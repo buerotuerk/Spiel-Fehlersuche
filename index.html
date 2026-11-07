@@ -4,25 +4,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Spiel-Fehlersuche – Michael Türk</title>
-<meta name="description" content="Finde sieben Fehler auf der Türk-Baustelle.">
+
+<title>🔎 Spiel-Fehlersuche | Michael Türk</title>
+<meta name="description" content="Finde die 7 Fehler! Unsere Türk-Monteure installieren eine Wärmepumpe. Kannst du alle Unterschiede entdecken?">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Türk Spiel-Fehlersuche">
+<meta property="og:title" content="🔎 Hier das 7-Fehler-Spiel spielen!">
+<meta property="og:description" content="Unsere Türk-Monteure installieren eine Wärmepumpe. Finde die 7 Unterschiede und knacke das Rätsel!">
+<meta property="og:url" content="https://buerotuerk.github.io/Spiel-Fehlersuche/">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🔎 Spiel-Fehlersuche – Michael Türk">
+<meta name="twitter:description" content="Entdecke die 7 Fehler auf unserer Baustelle!">
+
 <style>
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #eef4f3;
   color: #18383a;
 }
+
 header {
-  background: #087e85;
+  background: linear-gradient(120deg,#075962,#07969a);
   color: white;
   text-align: center;
-  padding: 18px 12px;
+  padding: 20px 12px;
 }
+
 h1 { margin: 0 0 10px; }
-header p { margin: 0; line-height: 1.5; }
-main { max-width: 1600px; margin: auto; padding: 12px; }
+
+header p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 1600px;
+  margin: auto;
+  padding: 12px;
+}
+
 .controls {
   display: flex;
   justify-content: center;
@@ -30,22 +56,39 @@ main { max-width: 1600px; margin: auto; padding: 12px; }
   gap: 9px;
   margin: 10px 0 18px;
 }
-.controls span, button {
+
+.controls span,
+button {
   background: white;
   border: 1px solid #b8d8d8;
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 10px 14px;
   font-size: 15px;
   font-weight: bold;
 }
-button { cursor: pointer; color: #087e85; }
+
+button {
+  cursor: pointer;
+  color: #087e85;
+}
+
+button:hover {
+  background: #dff6f3;
+}
+
 .images {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
   gap: 10px;
 }
+
 .panel { min-width: 0; }
-.panel h2 { text-align: center; font-size: 17px; }
+
+.panel h2 {
+  text-align: center;
+  font-size: 17px;
+}
+
 .picture {
   position: relative;
   border: 3px solid white;
@@ -53,13 +96,21 @@ button { cursor: pointer; color: #087e85; }
   overflow: hidden;
   background: white;
 }
+
 .picture img {
   width: 100%;
   height: auto;
   display: block;
   pointer-events: none;
+  user-select: none;
 }
-#right { border-color: #087e85; cursor: crosshair; }
+
+#right {
+  border-color: #087e85;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
 .marker {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -75,6 +126,7 @@ button { cursor: pointer; color: #087e85; }
   place-items: center;
   pointer-events: none;
 }
+
 .hint {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -85,22 +137,26 @@ button { cursor: pointer; color: #087e85; }
   background: #ffd70044;
   pointer-events: none;
 }
+
 #status {
   text-align: center;
   font-weight: bold;
   margin: 18px 0;
 }
+
 #overlay {
   display: none;
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #102d32cc;
+  background: #102d32dd;
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
+
 #overlay.visible { display: flex; }
+
 .dialog {
   background: white;
   border-radius: 22px;
@@ -110,35 +166,56 @@ button { cursor: pointer; color: #087e85; }
   width: 100%;
   box-shadow: 0 10px 45px #0005;
 }
+
 .dialog h2 {
   color: #078450;
-  font-size: 29px;
+  font-size: 30px;
 }
+
 .dialog button {
   background: #087e85;
   color: white;
   padding: 14px 23px;
+  border-radius: 12px;
 }
+
 footer {
   padding: 15px;
   text-align: center;
   color: #617b7d;
   font-size: 12px;
 }
+
 @media(max-width: 700px) {
+  header { padding: 13px 8px; }
+  h1 { font-size: 23px; }
+  header p { font-size: 13px; }
+
   main { padding: 5px; }
   .images { gap: 4px; }
-  .panel h2 { font-size: 13px; }
-  .picture { border-width: 2px; }
+  .panel h2 { font-size: 12px; }
+
+  .picture {
+    border-width: 2px;
+    border-radius: 6px;
+  }
+
   .controls { gap: 5px; }
-  .controls span, button {
+
+  .controls span,
+  button {
     padding: 8px 10px;
     font-size: 13px;
   }
-  .marker { border-width: 2px; font-size: 14px; }
+
+  .marker {
+    border-width: 2px;
+    font-size: 14px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -146,8 +223,10 @@ footer {
   <p>
     Unsere Türk-Monteure installieren eine Wärmepumpe.
     <br>
-    <strong>Vergleiche die Fotos und tippe die Fehler
-    im rechten Bild an!</strong>
+    <strong>
+      Vergleiche die beiden Fotos.
+      Tippe im rechten Bild auf die Unterschiede!
+    </strong>
   </p>
 </header>
 
@@ -163,25 +242,26 @@ footer {
     <div class="panel">
       <h2>Bild A – Original</h2>
       <div class="picture">
-        <img id="imageA" alt="Originalbild">
+        <img id="imageA" alt="Türk-Monteure auf der Baustelle – Original">
       </div>
     </div>
+
     <div class="panel">
-      <h2>Bild B – 7 Fehler</h2>
+      <h2>Bild B – 7 Unterschiede</h2>
       <div class="picture" id="right">
-        <img id="imageB" alt="Fehlerbild">
+        <img id="imageB" alt="Türk-Monteure auf der Baustelle – sieben Unterschiede">
       </div>
     </div>
   </div>
 
-  <div id="status">
+  <div id="status" aria-live="polite">
     Lade die beiden Baustellenbilder ...
   </div>
 </main>
 
-<div id="overlay" role="dialog" aria-modal="true">
+<div id="overlay" role="dialog" aria-modal="true" aria-labelledby="congrats">
   <div class="dialog">
-    <h2>🎉 Jawohl, prima!</h2>
+    <h2 id="congrats">🎉 Jawohl, prima!</h2>
     <h3>Alle 7 Fehler gefunden!</h3>
     <p>Herzlichen Glückwunsch! 🏆</p>
     <p id="result"></p>
@@ -194,33 +274,39 @@ footer {
 </footer>
 
 <script>
-const source =
- "https://raw.githubusercontent.com/" +
- "buerotuerk/Spiel-Fehlersuche/" +
- "8593dee4e03fa2daf7dd8bc3d0b6c7f0ea8b3870/" +
- "index.html";
+"use strict";
 
-const W = 1448, H = 1086;
+// Die beiden Fotos werden aus der gesicherten
+// Originalversion des GitHub-Projekts geladen.
+const source =
+  "https://raw.githubusercontent.com/" +
+  "buerotuerk/Spiel-Fehlersuche/" +
+  "8593dee4e03fa2daf7dd8bc3d0b6c7f0ea8b3870/" +
+  "index.html";
+
+const W = 1448;
+const H = 1086;
 
 const spots = [
-  {x:190,y:380,label:"Kappe am Lieferwagen"},
-  {x:550,y:382,label:"Bauhelm"},
-  {x:991,y:380,label:"Kappe beim Träger"},
-  {x:822,y:768,label:"Wasserwaage"},
-  {x:1267,y:776,label:"Werkzeugkasten"},
-  {x:1253,y:157,label:"Hutband"},
-  {x:1006,y:937,label:"Absperrkegel"}
+  {x:190,  y:380, label:"Kappe am Lieferwagen"},
+  {x:550,  y:382, label:"Bauhelm"},
+  {x:991,  y:380, label:"Kappe beim Träger"},
+  {x:822,  y:768, label:"Wasserwaage"},
+  {x:1267, y:776, label:"Werkzeugkasten"},
+  {x:1253, y:157, label:"Hutband"},
+  {x:1006, y:937, label:"Absperrkegel"}
 ];
 
 let found = new Set();
 let startTime = 0;
 let timer = null;
 let done = false;
+let picturesReady = false;
 
 const $ = id => document.getElementById(id);
 
 function formatTime(ms) {
-  let s = Math.floor(ms / 1000);
+  const s = Math.floor(ms / 1000);
   return String(Math.floor(s / 60)).padStart(2,"0")
     + ":" + String(s % 60).padStart(2,"0");
 }
@@ -244,19 +330,25 @@ function addMarker(p, className) {
   circle.className = className;
   circle.style.left = (p.x / W * 100) + "%";
   circle.style.top = (p.y / H * 100) + "%";
-  if (className === "marker") circle.textContent = "✓";
+
+  if (className === "marker") {
+    circle.textContent = "✓";
+  }
+
   $("right").appendChild(circle);
   return circle;
 }
 
 $("right").addEventListener("click", event => {
-  if (done || !$("imageB").complete) return;
+  if (done || !picturesReady) return;
 
   const rect = $("imageB").getBoundingClientRect();
   if (!rect.width || !rect.height) return;
 
   const x = (event.clientX - rect.left) * W / rect.width;
   const y = (event.clientY - rect.top) * H / rect.height;
+
+  if (x < 0 || y < 0 || x > W || y > H) return;
 
   begin();
 
@@ -265,8 +357,10 @@ $("right").addEventListener("click", event => {
 
   spots.forEach((p,i) => {
     if (found.has(i)) return;
+
     const distance =
       ((x-p.x)/68)**2 + ((y-p.y)/68)**2;
+
     if (distance < 1 && distance < best) {
       best = distance;
       hit = i;
@@ -281,6 +375,7 @@ $("right").addEventListener("click", event => {
 
   found.add(hit);
   addMarker(spots[hit], "marker");
+
   $("counter").textContent =
     "✅ " + found.size + " von 7 gefunden";
 
@@ -291,14 +386,17 @@ $("right").addEventListener("click", event => {
     done = true;
     updateClock();
     clearInterval(timer);
+
     $("result").textContent =
       "Deine Zeit: " + formatTime(Date.now()-startTime);
+
     $("overlay").classList.add("visible");
   }
 });
 
 function showHint() {
-  if (done) return;
+  if (done || !picturesReady) return;
+
   const i = spots.findIndex((p,j) => !found.has(j));
   if (i < 0) return;
 
@@ -306,6 +404,7 @@ function showHint() {
     .forEach(el => el.remove());
 
   const mark = addMarker(spots[i], "hint");
+
   $("status").textContent =
     "💡 Tipp: " + spots[i].label;
 
@@ -316,25 +415,38 @@ function restart() {
   found.clear();
   done = false;
   startTime = 0;
+
   clearInterval(timer);
+
   $("right").querySelectorAll(".marker,.hint")
     .forEach(el => el.remove());
-  $("counter").textContent = "✅ 0 von 7 gefunden";
+
+  $("counter").textContent =
+    "✅ 0 von 7 gefunden";
+
   $("clock").textContent = "⏱ 00:00";
+
   $("status").textContent =
     "Los geht's! Finde die sieben Unterschiede.";
+
   $("overlay").classList.remove("visible");
 }
 
 async function loadPictures() {
   try {
     const response = await fetch(source);
-    if (!response.ok) throw Error("Fotoquelle fehlt");
+
+    if (!response.ok) {
+      throw Error("Fotoquelle fehlt");
+    }
 
     const html = await response.text();
+
     const oldPage = new DOMParser()
       .parseFromString(html, "text/html");
-    const images = oldPage.querySelectorAll(".images img");
+
+    const images =
+      oldPage.querySelectorAll(".images img");
 
     if (images.length < 2) {
       throw Error("Nicht beide Fotos gefunden");
@@ -342,8 +454,17 @@ async function loadPictures() {
 
     $("imageA").src = images[0].src;
     $("imageB").src = images[1].src;
+
+    await Promise.all([
+      $("imageA").decode(),
+      $("imageB").decode()
+    ]);
+
+    picturesReady = true;
+
     $("status").textContent =
       "Los geht's! Finde die sieben Unterschiede.";
+
   } catch (error) {
     $("status").textContent =
       "Die Baustellenbilder konnten nicht geladen werden. " +
@@ -353,5 +474,6 @@ async function loadPictures() {
 
 loadPictures();
 </script>
+
 </body>
 </html>
