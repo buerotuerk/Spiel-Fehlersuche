@@ -23,7 +23,7 @@
 #mobiletools button{border:1px solid #d2efea;background:#075b61ed;color:#fff;font-size:13px;box-shadow:0 2px 7px #0005;border-radius:22px;min-width:36px;min-height:36px;padding:6px 9px;touch-action:manipulation}
 #mobiletools button:first-child{background:#fff5be;color:#514000;font-weight:800}
 #board:fullscreen{width:100vw!important;height:100dvh!important;aspect-ratio:auto!important;border:0;border-radius:0;background:#123d3d}
-#board:fullscreen #plane{width:min(100vw,177.68dvh);height:min(56.28vw,100dvh);left:50%;top:50%;right:auto;bottom:auto;transform-origin:0 0}
+#board:fullscreen #plane{width:min(100vw,177.68dvh);height:min(56.28vw,100dvh);left:calc((100% - min(100vw,177.68dvh))/2);top:calc((100% - min(56.28vw,100dvh))/2);right:auto;bottom:auto;transform-origin:0 0}
 #board:fullscreen #mobiletools{top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right))}
 @media(max-width:600px){header{padding:7px 8px}header b{font-size:12px}header h1{font-size:20px;margin:3px 0}header p{display:none}main{padding:3px}main>.bar{gap:4px;margin:3px auto}main>.bar:first-child button{font-size:12px;padding:9px 8px}main>.bar:nth-child(2){display:none}#instruction{font-size:12px;margin:5px 8px}#zoomtext{display:none}#msg{margin:7px 3px;font-size:12px}#mobiletools{top:5px;right:5px;gap:3px}#mobiletools button{font-size:12px;min-width:32px;min-height:32px;padding:5px 7px}}
 @media(max-width:600px){button,.pill{font-size:12px;padding:9px 10px}main{padding:5px}#board{border-width:2px;border-radius:5px}}
