@@ -71,6 +71,44 @@ body.immersive-on #gamearea #infopanel{position:fixed;z-index:1150;right:0;top:0
   #gamearea{gap:5px;margin:5px auto}
   #comparisonHeadings strong{font-size:13px;padding:5px 2px}
 }
+/* Handy: Werkzeugleiste ist auch beim Drehen und Scrollen immer erreichbar. */
+@media (max-width:1050px), (hover:none) and (pointer:coarse){
+  html{scroll-padding-bottom:90px}
+  main{padding-bottom:calc(90px + env(safe-area-inset-bottom, 0px))}
+  #tools{
+    position:fixed!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    z-index:1300!important;
+    width:100%!important;
+    min-height:58px!important;
+    height:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex-wrap:nowrap!important;
+    gap:clamp(3px,1vw,8px)!important;
+    padding:7px max(5px,env(safe-area-inset-right, 5px)) calc(7px + env(safe-area-inset-bottom, 0px)) max(5px,env(safe-area-inset-left, 5px))!important;
+    margin:0!important;
+    background:#d8ece7f5!important;
+    border-top:1px solid #9ecdc4;
+    box-shadow:0 -3px 12px #123a4030
+  }
+  #tools button{
+    flex:0 1 auto;
+    min-width:0!important;
+    min-height:42px!important;
+    padding:8px clamp(8px,2vw,14px)!important;
+    white-space:nowrap;
+    font-size:clamp(12px,2.7vw,15px)!important
+  }
+  #tools #hint{flex:0 0 auto}
+}
+@media (max-width:680px){
+  #tools{gap:3px!important}
+  #tools button{padding:7px 8px!important;font-size:12px!important}
+}
 #note{display:none;text-align:center;margin:7px}#missing{display:none;color:#9c2a14;background:#fff2ec;border-radius:12px;padding:12px;text-align:center}
 .modal{position:fixed;z-index:4000;inset:0;background:#0b3d41d9;display:none;justify-content:center;align-items:center;padding:15px}
 .modal.show{display:flex}
