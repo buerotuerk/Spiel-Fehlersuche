@@ -54,6 +54,13 @@ body.immersive-on #gamearea #infopanel{position:fixed;z-index:1150;right:0;top:0
 #board.immersive.compare #viewport{width:min(calc(100vw - 300px),calc((100dvh - 60px)*2.666667));height:min(calc((100vw - 300px)*.375),calc(100dvh - 60px));left:calc((100% - min(calc(100vw - 300px),calc((100dvh - 60px)*2.666667)))/2);top:calc((100% - min(calc((100vw - 300px)*.375),calc(100dvh - 60px)))/2)}
 @media(max-width:850px){body.immersive-on #gamearea #infopanel{width:100%;height:114px;top:auto;bottom:60px;right:0;padding:8px 15px;border-radius:0;overflow:auto}body.immersive-on #infopanel h2{font-size:15px;margin:0 0 3px}body.immersive-on #infoText{font-size:13px;line-height:1.3}body.immersive-on #infoHistory{display:none}#board.immersive{inset:0 0 174px 0!important;width:100vw!important;height:calc(100dvh - 174px)!important}#board.immersive #viewport{width:min(100vw,calc((100dvh - 174px)*1.333333));height:min(75vw,calc(100dvh - 174px));left:calc((100% - min(100vw,calc((100dvh - 174px)*1.333333)))/2);top:calc((100% - min(75vw,calc(100dvh - 174px)))/2)}#board.immersive.compare #viewport{width:min(100vw,calc((100dvh - 174px)*2.666667));height:min(37.5vw,calc(100dvh - 174px));left:calc((100% - min(100vw,calc((100dvh - 174px)*2.666667)))/2);top:calc((100% - min(37.5vw,calc(100dvh - 174px)))/2)}}
 #picturecolumn{min-width:0;width:100%}
+/* Phone comparison images keep their entire height, without clipping. */
+@media (max-width:1050px), (hover:none) and (pointer:coarse){
+ #board:not(.immersive){min-height:0;aspect-ratio:4/3}
+ #board:not(.immersive).compare{aspect-ratio:8/3}
+ #board:not(.immersive) #viewport{position:absolute;inset:0;width:100%;height:100%}
+ .photoPanel{min-width:0;min-height:0}
+}
 #comparisonHeadings{display:none;justify-content:space-around;align-items:center;text-align:center;gap:4px;margin:0 auto 5px;color:#075c61}
 #comparisonHeadings strong{display:block;width:50%;font-size:clamp(13px,1.8vw,17px);background:#d6eeea;padding:7px 4px;border-radius:8px}
 .panelname{display:none!important}
@@ -184,7 +191,7 @@ function bound(){const d=imageDims();dx=Math.min(0,Math.max(d.w*(1-zoom),dx));dy
 function paint(){bound();vp.style.transform='translate('+dx+'px,'+dy+'px) scale('+zoom+')';board.style.touchAction=zoom<=1.01?'pan-y':'none';$('zoomlabel').textContent=Math.round(zoom*100)+' %'}
 function zoomTo(value,x=imageDims().w/2,y=imageDims().h/2){const z=Math.max(1,Math.min(8,value)),ix=(x-dx)/zoom,iy=(y-dy)/zoom;zoom=z;dx=x-ix*z;dy=y-iy*z;paint()}
 function resetZoom(){zoom=1;dx=dy=0;paint()}
-function fitBoard(){if(immersive&&!document.body.classList.contains('mobile-focus'))return;const area=board.parentElement,single=window.matchMedia('(max-width: 950px)').matches,maxWidth=area.clientWidth,maxHeight=Math.max(200,innerHeight*(single?1.8:1.15)),ratio=game===0?4/3:8/3;board.style.width=Math.round(Math.min(maxWidth,maxHeight*ratio))+'px';board.style.margin='0 auto';$('comparisonHeadings').style.width=board.style.width;resetZoom()}
+function fitBoard(){if(immersive&&!document.body.classList.contains('mobile-focus'))return;const area=board.parentElement,single=window.matchMedia('(max-width: 950px)').matches,maxWidth=area.clientWidth,maxHeight=Math.max(200,innerHeight*(single?1.8:1.15)),ratio=game===0?4/3:8/3;const width=Math.round(single?maxWidth:Math.min(maxWidth,maxHeight*ratio));board.style.width=width+'px';board.style.height=Math.round(width/ratio)+'px';board.style.aspectRatio=String(ratio);board.style.margin='0 auto';$('comparisonHeadings').style.width=board.style.width;resetZoom()}
 function clearHint(){if(hint){hint.remove();hint=null}}
 function makeMark(part,which,hinting=false){const [x,y,rx,ry]=part,el=document.createElement('span');el.className='mark'+(hinting?' hint':'');el.style.left=x/W*100+'%';el.style.top=y/H*100+'%';el.style.width=rx*2/W*100+'%';el.style.height=ry*2/H*100+'%';el.textContent=hinting?'?':'✓';$(which?'marksB':'marksA').append(el);return el}
 function announce(text){$('note').textContent=text}
@@ -209,10 +216,11 @@ $('minus').onclick=()=>zoomTo(zoom/1.45);
 $('full').onclick=toggleImmersive;
 $('reset').onclick=()=>introFor(game);
 board.addEventListener('wheel',e=>{e.preventDefault();const r=board.getBoundingClientRect();zoomTo(zoom*(e.deltaY<0?1.17:1/1.17),e.clientX-r.left-vp.offsetLeft,e.clientY-r.top-vp.offsetTop)},{passive:false});
-board.addEventListener('pointerdown',e=>{if(!started||$('win').classList.contains('visible'))return;if(e.pointerType==='mouse'&&e.button!==0)return;board.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===1){drag={x:e.clientX,y:e.clientY,dx,dy};pinch=null;moved=false}else if(pointers.size===2){const ps=[...pointers.values()];pinch={d:Math.hypot(ps[0].x-ps[1].x,ps[0].y-ps[1].y),z:zoom};moved=true;drag=null}});
-board.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2&&pinch){const ps=[...pointers.values()];zoomTo(pinch.z*Math.hypot(ps[0].x-ps[1].x,ps[0].y-ps[1].y)/Math.max(pinch.d,1));moved=true}else if(pointers.size===1&&drag){const ddx=e.clientX-drag.x,ddy=e.clientY-drag.y;if(Math.hypot(ddx,ddy)>7)moved=true;if(zoom>1){dx=drag.dx+ddx;dy=drag.dy+ddy;paint()}}});
+board.addEventListener('pointerdown',e=>{if(!started||$('win').classList.contains('visible'))return;if(e.pointerType==='mouse'&&e.button!==0)return;if(zoom>1.01||e.pointerType==='mouse')board.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===1){drag={x:e.clientX,y:e.clientY,dx,dy};pinch=null;moved=false}else if(pointers.size===2){const ps=[...pointers.values()];pinch={d:Math.hypot(ps[0].x-ps[1].x,ps[0].y-ps[1].y),z:zoom};moved=true;drag=null}});
+board.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2&&pinch){const ps=[...pointers.values()];zoomTo(pinch.z*Math.hypot(ps[0].x-ps[1].x,ps[0].y-ps[1].y)/Math.max(pinch.d,1));moved=true}else if(pointers.size===1&&drag){const ddx=e.clientX-drag.x,ddy=e.clientY-drag.y;if(Math.hypot(ddx,ddy)>7)moved=true;if(zoom>1.01){dx=drag.dx+ddx;dy=drag.dy+ddy;paint()}}});
 board.addEventListener('pointerup',e=>{if(!pointers.has(e.pointerId))return;const click=pointers.size===1&&!moved;pointers.delete(e.pointerId);if(click)hitPoint(e);drag=null;pinch=null;if(pointers.size)moved=true});
 board.addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);drag=null;pinch=null;moved=true});
+board.addEventListener('lostpointercapture',e=>{pointers.delete(e.pointerId);drag=null;pinch=null;moved=true});
 $('imgA').onerror=$('imgB').onerror=()=>{$('missing').style.display='block'};
 window.addEventListener('resize',fitBoard);window.addEventListener('orientationchange',fitBoard);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&immersive)toggleImmersive()});
