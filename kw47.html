@@ -53,6 +53,24 @@ body.immersive-on #gamearea #infopanel{position:fixed;z-index:1150;right:0;top:0
 #board.immersive #viewport{width:min(calc(100vw - 300px),calc((100dvh - 60px)*1.333333));height:min(calc((100vw - 300px)*.75),calc(100dvh - 60px));left:calc((100% - min(calc(100vw - 300px),calc((100dvh - 60px)*1.333333)))/2);top:calc((100% - min(calc((100vw - 300px)*.75),calc(100dvh - 60px)))/2)}
 #board.immersive.compare #viewport{width:min(calc(100vw - 300px),calc((100dvh - 60px)*2.666667));height:min(calc((100vw - 300px)*.375),calc(100dvh - 60px));left:calc((100% - min(calc(100vw - 300px),calc((100dvh - 60px)*2.666667)))/2);top:calc((100% - min(calc((100vw - 300px)*.375),calc(100dvh - 60px)))/2)}
 @media(max-width:850px){body.immersive-on #gamearea #infopanel{width:100%;height:114px;top:auto;bottom:60px;right:0;padding:8px 15px;border-radius:0;overflow:auto}body.immersive-on #infopanel h2{font-size:15px;margin:0 0 3px}body.immersive-on #infoText{font-size:13px;line-height:1.3}body.immersive-on #infoHistory{display:none}#board.immersive{inset:0 0 174px 0!important;width:100vw!important;height:calc(100dvh - 174px)!important}#board.immersive #viewport{width:min(100vw,calc((100dvh - 174px)*1.333333));height:min(75vw,calc(100dvh - 174px));left:calc((100% - min(100vw,calc((100dvh - 174px)*1.333333)))/2);top:calc((100% - min(75vw,calc(100dvh - 174px)))/2)}#board.immersive.compare #viewport{width:min(100vw,calc((100dvh - 174px)*2.666667));height:min(37.5vw,calc(100dvh - 174px));left:calc((100% - min(100vw,calc((100dvh - 174px)*2.666667)))/2);top:calc((100% - min(37.5vw,calc(100dvh - 174px)))/2)}}
+#picturecolumn{min-width:0;width:100%}
+#comparisonHeadings{display:none;justify-content:space-around;align-items:center;text-align:center;gap:4px;margin:0 auto 5px;color:#075c61}
+#comparisonHeadings strong{display:block;width:50%;font-size:clamp(13px,1.8vw,17px);background:#d6eeea;padding:7px 4px;border-radius:8px}
+.panelname{display:none!important}
+@media(max-width:950px){
+  html,body{overflow-x:hidden;overflow-y:auto}
+  body.immersive-on{overflow:auto!important}
+  #board.immersive{position:relative!important;inset:auto!important;width:100%!important;height:auto!important;aspect-ratio:4/3!important;z-index:auto!important;border:2px solid #afd4cf!important;border-radius:8px!important}
+  #board.immersive.compare{aspect-ratio:8/3!important}
+  #board.immersive #viewport,#board.immersive.compare #viewport{position:absolute!important;inset:0!important;left:0!important;top:0!important;width:100%!important;height:100%!important}
+  body.immersive-on #gamearea #infopanel{position:static!important;width:auto!important;height:auto!important;max-height:none!important;overflow:visible!important;display:block!important}
+  body.immersive-on #tools{position:static!important;height:auto!important;flex-wrap:wrap!important}
+  body.mobile-focus header,body.mobile-focus #rotate,body.mobile-focus main>.bar,body.mobile-focus #instruction{display:none}
+  body.mobile-focus #gamearea{margin-top:0}
+  #infopanel{max-width:100%}
+  #gamearea{gap:5px;margin:5px auto}
+  #comparisonHeadings strong{font-size:13px;padding:5px 2px}
+}
 #note{display:none;text-align:center;margin:7px}#missing{display:none;color:#9c2a14;background:#fff2ec;border-radius:12px;padding:12px;text-align:center}
 .modal{position:fixed;z-index:4000;inset:0;background:#0b3d41d9;display:none;justify-content:center;align-items:center;padding:15px}
 .modal.show{display:flex}
@@ -77,13 +95,13 @@ body.immersive-on #tools button{min-width:38px;padding:8px 10px}
 <div class="bar"><button id="choose1" class="active">1 · 8 Montagefehler</button><button id="choose2">2 · 7 Strand-Unterschiede</button></div>
 <div class="bar"><span id="count" class="pill">✅ 0 von 8 gefunden</span><span id="clock" class="pill">⏱ 00:00</span><span id="zoomlabel" class="pill">100 %</span></div>
 <div id="instruction">Suche im Heizungsraum acht Montagefehler. Tippe direkt auf die fehlerhaften Stellen.</div>
-<div id="gamearea"><div id="board" aria-label="Interaktives Suchspiel">
+<div id="gamearea"><div id="picturecolumn"><div id="comparisonHeadings" aria-label="Vergleichsbilder"><strong>Bild 1 – Original</strong><strong>Bild 2 – Finde die Unterschiede</strong></div><div id="board" aria-label="Interaktives Suchspiel">
 <div id="viewport">
-<div id="panelA" class="photoPanel"><img id="imgA" src="kw47-installation.webp" alt="Originalbild Heizungsraum ohne Markierungen"><div id="marksA"></div><span id="labelA" class="panelname" style="display:none">Bild 1</span></div>
-<div id="panelB" class="photoPanel"><img id="imgB" src="kw47-strand-b.webp" alt="Brickman-Strandbild mit sieben Unterschieden"><div id="marksB"></div><span class="panelname">Bild 2 – finde die Unterschiede</span></div>
+<div id="panelA" class="photoPanel"><img id="imgA" src="kw47-installation.webp" alt="Originalbild Heizungsraum ohne Markierungen"><div id="marksA"></div></div>
+<div id="panelB" class="photoPanel"><img id="imgB" src="kw47-strand-b.webp" alt="Brickman-Strandbild mit sieben Unterschieden"><div id="marksB"></div></div>
 </div>
 <div id="win" role="dialog" aria-label="Spiel geschafft"><div class="dialog"><h2 id="winTitle">🏆 Prima!</h2><p id="winBody"></p><button class="primary" id="winNext">Weiter</button><button class="secondary" id="winReview">Treffer noch einmal ansehen</button></div></div>
-</div>
+</div></div>
 <aside id="infopanel" aria-label="Beschreibung der gefundenen Fehler" aria-live="polite">
 <h2 id="infoTitle">Fehlerbeschreibung</h2>
 <div id="infoText">Klicke auf einen Fehler im Bild. Hier erscheint die Erklärung. Der gelbe Kreis bleibt im Suchbild sichtbar.</div>
@@ -125,10 +143,10 @@ function clock(){if(!startTime)return '00:00';const t=Math.floor((Date.now()-sta
 function updateClock(){$('clock').textContent='⏱ '+clock()}
 function startClock(){if(startTime)return;startTime=Date.now();interval=setInterval(updateClock,1000)}
 function bound(){const d=imageDims();dx=Math.min(0,Math.max(d.w*(1-zoom),dx));dy=Math.min(0,Math.max(d.h*(1-zoom),dy))}
-function paint(){bound();vp.style.transform='translate('+dx+'px,'+dy+'px) scale('+zoom+')';$('zoomlabel').textContent=Math.round(zoom*100)+' %'}
+function paint(){bound();vp.style.transform='translate('+dx+'px,'+dy+'px) scale('+zoom+')';board.style.touchAction=zoom<=1.01?'pan-y':'none';$('zoomlabel').textContent=Math.round(zoom*100)+' %'}
 function zoomTo(value,x=imageDims().w/2,y=imageDims().h/2){const z=Math.max(1,Math.min(8,value)),ix=(x-dx)/zoom,iy=(y-dy)/zoom;zoom=z;dx=x-ix*z;dy=y-iy*z;paint()}
 function resetZoom(){zoom=1;dx=dy=0;paint()}
-function fitBoard(){if(immersive)return;const area=board.parentElement,sidebar=$('infopanel'),single=window.matchMedia('(max-width: 950px)').matches,maxWidth=area.clientWidth-(single?0:sidebar.offsetWidth+12),maxHeight=Math.max(200,innerHeight*.93),ratio=game===0?4/3:8/3;board.style.width=Math.round(Math.min(maxWidth,maxHeight*ratio))+'px';board.style.margin='0 auto';resetZoom()}
+function fitBoard(){if(immersive&&!document.body.classList.contains('mobile-focus'))return;const area=board.parentElement,single=window.matchMedia('(max-width: 950px)').matches,maxWidth=area.clientWidth,maxHeight=Math.max(200,innerHeight*(single?1.8:1.15)),ratio=game===0?4/3:8/3;board.style.width=Math.round(Math.min(maxWidth,maxHeight*ratio))+'px';board.style.margin='0 auto';$('comparisonHeadings').style.width=board.style.width;resetZoom()}
 function clearHint(){if(hint){hint.remove();hint=null}}
 function makeMark(part,which,hinting=false){const [x,y,rx,ry]=part,el=document.createElement('span');el.className='mark'+(hinting?' hint':'');el.style.left=x/W*100+'%';el.style.top=y/H*100+'%';el.style.width=rx*2/W*100+'%';el.style.height=ry*2/H*100+'%';el.textContent=hinting?'?':'✓';$(which?'marksB':'marksA').append(el);return el}
 function announce(text){$('note').textContent=text}
@@ -137,9 +155,9 @@ function result(i){if(!started||$('intro').classList.contains('show')||$('win').
 function winCheck(){if(found.size!==list().length)return;clearInterval(interval);updateClock();$('winTitle').textContent=game===0?'🏆 Prima! Alle 8 Fehler gefunden!':'🏆 Super! Alle 7 Unterschiede gefunden!';$('winBody').textContent=game===0?'Du hast den Heizungsraum erfolgreich geprüft. Zeit: '+clock()+'. Weiter geht es mit dem Brickman-Strand.':'Geschafft! Du hast beide Spiele der KW 47 abgeschlossen. Zeit für Spiel 2: '+clock()+'.';$('winNext').textContent=game===0?'▶ Weiter zum Strandspiel':'↩ Noch einmal von vorne';$('win').classList.add('visible')}
 function hitPoint(e){if(!started||$('win').classList.contains('visible'))return;const r=board.getBoundingClientRect(),v=imageDims(),bx=(e.clientX-r.left-vp.offsetLeft-dx)/zoom,by=(e.clientY-r.top-vp.offsetTop-dy)/zoom;if(bx<0||by<0||bx>v.w||by>v.h)return;const isB=game===1&&bx>v.w/2;const pw=game===1?v.w/2:v.w,xx=((game===1?bx%pw:bx)/pw)*W,yy=by/v.h*H;let best=-1,dist=999;list().forEach((spot,i)=>{for(const [x,y,rx,ry] of spot.parts){const d=((xx-x)/rx)**2+((yy-y)/ry)**2;if(d<=1.2&&d<dist){dist=d;best=i}}});if(best>=0)result(best)}
 function introFor(n,initial=false){pending=n;previous=game;const n1=n===0;$('introTitle').textContent=n1?'Spiel 1 – Finde 8 Montagefehler':'Spiel 2 – Finde 7 Strand-Unterschiede';$('introBody').innerHTML=n1?'Im Heizungsraum sind <b>8 Montagefehler</b> versteckt. Finde die fehlerhaften Stellen, tippe sie an und lies die Erklärung. Auch mehrere undämmte Rohrabschnitte gehören zu EINEM Fehler.':'Vergleiche die <b>zwei Strandbilder</b> mit den Brickman-Figuren von Türk, Viega und Geberit. Im zweiten Bild sind <b>7 Dinge verändert oder verschwunden</b>. Tippe eine unterschiedliche Stelle in einem der beiden Bilder an.';$('start').textContent=n1?'▶ Montagecheck starten':'▶ Strandspiel starten';$('cancel').style.display=initial?'none':'block';$('intro').classList.add('show')}
-function switchGame(n){game=n;found.clear();$('infoTitle').textContent=game===0?'Fehlerbeschreibung':'Unterschiede am Strand';$('infoText').textContent=game===0?'Klicke auf einen Fehler im Bild. Die Erklärung erscheint hier; der gelbe Kreis bleibt sichtbar.':'Finde die sieben Unterschiede in den beiden Bildern. Die Beschreibung erscheint hier.';$('infoHistory').innerHTML='';clearHint();clearInterval(interval);startTime=0;started=true;$('count').textContent='✅ 0 von '+list().length+' gefunden';updateClock();$('marksA').innerHTML='';$('marksB').innerHTML='';board.classList.toggle('compare',n===1);$('imgA').src=n===0?'kw47-installation.webp':'kw47-strand-a.webp';$('imgB').src='kw47-strand-b.webp';$('labelA').style.display=n===1?'block':'none';$('instruction').innerHTML=n===0?'Suche <b>8 Montagefehler</b> im Heizungsraum. Nach jedem Treffer folgt eine Erklärung.':'Vergleiche die <b>beiden Strandbilder</b> und finde <b>7 Unterschiede</b>.';$('choose1').classList.toggle('active',n===0);$('choose2').classList.toggle('active',n===1);$('win').classList.remove('visible');$('answer').classList.remove('show');$('missing').style.display='none';resetZoom();fitBoard();if(immersive)paint()}
-function toggleImmersive(){immersive=!immersive;board.classList.toggle('immersive',immersive);document.body.classList.toggle('immersive-on',immersive);$('full').textContent=immersive?'✕':'⛶';resetZoom();fitBoard()}
-$('start').onclick=()=>{const n=pending;pending=null;$('intro').classList.remove('show');switchGame(n);if(window.matchMedia('(max-width: 700px)').matches&&!immersive)toggleImmersive()};
+function switchGame(n){game=n;found.clear();$('infoTitle').textContent=game===0?'Fehlerbeschreibung':'Unterschiede am Strand';$('infoText').textContent=game===0?'Klicke auf einen Fehler im Bild. Die Erklärung erscheint hier; der gelbe Kreis bleibt sichtbar.':'Finde die sieben Unterschiede in den beiden Bildern. Die Beschreibung erscheint hier.';$('infoHistory').innerHTML='';clearHint();clearInterval(interval);startTime=0;started=true;$('count').textContent='✅ 0 von '+list().length+' gefunden';updateClock();$('marksA').innerHTML='';$('marksB').innerHTML='';board.classList.toggle('compare',n===1);$('imgA').src=n===0?'kw47-installation.webp':'kw47-strand-a.webp';$('imgB').src='kw47-strand-b.webp';$('comparisonHeadings').style.display=n===1?'flex':'none';$('instruction').innerHTML=n===0?'Suche <b>8 Montagefehler</b> im Heizungsraum. Nach jedem Treffer folgt eine Erklärung.':'Vergleiche die <b>beiden Strandbilder</b> und finde <b>7 Unterschiede</b>.';$('choose1').classList.toggle('active',n===0);$('choose2').classList.toggle('active',n===1);$('win').classList.remove('visible');$('answer').classList.remove('show');$('missing').style.display='none';resetZoom();fitBoard();if(immersive)paint()}
+function toggleImmersive(){immersive=!immersive;if(window.matchMedia('(max-width: 950px)').matches){document.body.classList.toggle('mobile-focus',immersive);document.body.classList.remove('immersive-on');board.classList.remove('immersive');$('full').textContent=immersive?'✕':'⛶';fitBoard();return}board.classList.toggle('immersive',immersive);document.body.classList.toggle('immersive-on',immersive);$('full').textContent=immersive?'✕':'⛶';resetZoom();fitBoard()}
+$('start').onclick=()=>{const n=pending;pending=null;$('intro').classList.remove('show');switchGame(n);/* Handy startet normal scrollbar, nicht in gesperrter Grossansicht. */};
 $('cancel').onclick=()=>{pending=null;$('intro').classList.remove('show')};
 $('continue').onclick=()=>{$('answer').classList.remove('show');winCheck()};
 $('winNext').onclick=()=>{$('win').classList.remove('visible');if(game===0)introFor(1);else introFor(0)};
