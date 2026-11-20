@@ -1,16 +1,25 @@
 <!doctype html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#087980"><title>Türk Montagecheck KW 47 – 8 Montagefehler & 7 Strand-Unterschiede</title>
-<meta name="description" content="Türk Montagecheck KW 47: Finde 8 Montagefehler im Heizungsraum und danach 7 Unterschiede am Brickman-Strand.">
-<meta property="og:title" content="🔎 Türk-Montagecheck – 8 Montagefehler und 7 Strand-Unterschiede">
-<meta property="og:description" content="Zwei Suchspiele hintereinander: Erst den Heizungsraum prüfen, dann sieben Unterschiede am Strand finden.">
+<meta name="theme-color" content="#087980"><title>Türk-Freitagsspiel KW 47 – 8 Montagefehler und 7 Strand-Unterschiede</title>
+<meta name="description" content="Türk-Freitagsspiel KW 47: Finde 8 Montagefehler im Heizungsraum und danach 7 Unterschiede am Brickman-Strand.">
+<meta property="og:title" content="🎮 Türk-Freitagsspiel – Jetzt mitspielen!">
+<meta property="og:description" content="Finde 8 Montagefehler im Heizungsraum und 7 Unterschiede am Brickman-Strand. Jetzt spielen!">
 <meta property="og:image" content="https://buerotuerk.github.io/Spiel-Fehlersuche/kw47-strand-a.webp">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Türk-Freitagsspiel">
+<meta property="og:url" content="https://buerotuerk.github.io/Spiel-Fehlersuche/kw47.html">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:alt" content="Brickman-Strand mit Türk-, Viega- und Geberit-Figuren">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🎮 Türk-Freitagsspiel – Jetzt mitspielen!">
+<meta name="twitter:description" content="8 Montagefehler und 7 Strand-Unterschiede finden">
+<meta name="twitter:image" content="https://buerotuerk.github.io/Spiel-Fehlersuche/kw47-strand-a.webp">
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#edf7f5;color:#133c42}
 header{background:linear-gradient(110deg,#075c61,#078990);color:#fff;text-align:center;padding:12px}
 header b{font-size:clamp(13px,2vw,17px)}header h1{margin:5px 0;font-size:clamp(21px,3.4vw,32px)}
-main{max-width:1550px;margin:auto;padding:8px}
+main{max-width:1900px;margin:auto;padding:8px}
 .bar{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:6px auto}
 button,.pill{border:1px solid #b6d7d3;background:white;color:#07666d;padding:10px 13px;border-radius:22px;font-size:14px;font-weight:750;cursor:pointer;touch-action:manipulation}
 button.active{background:#087980;color:#fff}button:focus-visible{outline:3px solid #e7bc29}button:disabled{opacity:.5}
@@ -30,7 +39,7 @@ button.active{background:#087980;color:#fff}button:focus-visible{outline:3px sol
 #tools{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:9px auto}
 #tools button{background:#08646b;color:white;min-width:44px}
 #tools #hint{background:#fff0a6;color:#543e00}
-#gamearea{display:grid;grid-template-columns:minmax(0,1fr) 320px;align-items:start;gap:16px;margin:10px auto;max-width:1500px}
+#gamearea{display:grid;grid-template-columns:minmax(0,1fr) 260px;align-items:start;gap:12px;margin:10px auto;max-width:1850px;width:100%}
 #gamearea #board{min-width:0}
 #infopanel{background:white;border:2px solid #b9d9d4;border-radius:14px;padding:20px 18px;box-shadow:0 3px 14px #114f4822;min-height:210px;align-self:start}
 #infopanel h2{margin:0 0 12px;color:#087980;font-size:22px}
@@ -63,7 +72,7 @@ body.immersive-on #tools button{min-width:38px;padding:8px 10px}
 @media(max-width:650px){header{padding:7px}header h1{font-size:20px}header b{font-size:12px}#instruction{font-size:12px}#rotate{font-size:12px}.bar button,.pill{font-size:12px;padding:8px}#tools button{font-size:12px;min-width:34px;padding:9px}}
 </style></head>
 <body>
-<header><b>Michael Türk – Sanitär-, Heiz- und Umwelttechnik</b><h1>🔎 Montagecheck KW 47</h1></header>
+<header><b>Michael Türk – Sanitär-, Heiz- und Umwelttechnik</b><h1>🎮 Türk-Freitagsspiel KW 47</h1></header>
 <main><div id="rotate">📱 Handy quer drehen, um das Bild zu vergrößern. Bei Bedarf auf ⛶ tippen.</div>
 <div class="bar"><button id="choose1" class="active">1 · 8 Montagefehler</button><button id="choose2">2 · 7 Strand-Unterschiede</button></div>
 <div class="bar"><span id="count" class="pill">✅ 0 von 8 gefunden</span><span id="clock" class="pill">⏱ 00:00</span><span id="zoomlabel" class="pill">100 %</span></div>
@@ -119,7 +128,7 @@ function bound(){const d=imageDims();dx=Math.min(0,Math.max(d.w*(1-zoom),dx));dy
 function paint(){bound();vp.style.transform='translate('+dx+'px,'+dy+'px) scale('+zoom+')';$('zoomlabel').textContent=Math.round(zoom*100)+' %'}
 function zoomTo(value,x=imageDims().w/2,y=imageDims().h/2){const z=Math.max(1,Math.min(8,value)),ix=(x-dx)/zoom,iy=(y-dy)/zoom;zoom=z;dx=x-ix*z;dy=y-iy*z;paint()}
 function resetZoom(){zoom=1;dx=dy=0;paint()}
-function fitBoard(){if(immersive)return;const area=board.parentElement,sidebar=$('infopanel'),single=window.matchMedia('(max-width: 950px)').matches,maxWidth=area.clientWidth-(single?0:sidebar.offsetWidth+16),maxHeight=Math.max(200,innerHeight*.72),ratio=game===0?4/3:8/3;board.style.width=Math.round(Math.min(maxWidth,maxHeight*ratio))+'px';board.style.margin='0 auto';resetZoom()}
+function fitBoard(){if(immersive)return;const area=board.parentElement,sidebar=$('infopanel'),single=window.matchMedia('(max-width: 950px)').matches,maxWidth=area.clientWidth-(single?0:sidebar.offsetWidth+12),maxHeight=Math.max(200,innerHeight*.93),ratio=game===0?4/3:8/3;board.style.width=Math.round(Math.min(maxWidth,maxHeight*ratio))+'px';board.style.margin='0 auto';resetZoom()}
 function clearHint(){if(hint){hint.remove();hint=null}}
 function makeMark(part,which,hinting=false){const [x,y,rx,ry]=part,el=document.createElement('span');el.className='mark'+(hinting?' hint':'');el.style.left=x/W*100+'%';el.style.top=y/H*100+'%';el.style.width=rx*2/W*100+'%';el.style.height=ry*2/H*100+'%';el.textContent=hinting?'?':'✓';$(which?'marksB':'marksA').append(el);return el}
 function announce(text){$('note').textContent=text}
