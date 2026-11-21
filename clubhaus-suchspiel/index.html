@@ -1,42 +1,96 @@
 <!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#176b5a"><meta name="description" content="Clubhaus Suchspiel: Entdecke zehn versteckte Hundewelpen auf einem fotorealistischen Vereinsgelände.">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Clubhaus Suchspiel"><meta property="og:title" content="🐶 Clubhaus Suchspiel – Finde die 10 Hundewelpen"><meta property="og:description" content="Zehn Hundewelpen haben sich auf dem Clubhausgelände versteckt. Findest du alle? Jetzt kostenlos mitspielen!"><meta property="og:url" content="https://buerotuerk.github.io/Spiel-Fehlersuche/clubhaus-suchspiel/"><meta property="og:image" content="https://buerotuerk.github.io/Spiel-Fehlersuche/clubhaus-suchspiel/whatsapp-vorschau.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="676"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Clubhaus Suchspiel – Finde die 10 Hundewelpen"><meta name="twitter:image" content="https://buerotuerk.github.io/Spiel-Fehlersuche/clubhaus-suchspiel/whatsapp-vorschau.jpg">
 <title>Clubhaus Suchspiel – Finde die 10 Hundewelpen</title><style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eff7f1;color:#203b35;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}header{background:linear-gradient(135deg,#145a49,#21826a);color:white;text-align:center;padding:20px 12px 16px}header .clublogo{display:block;max-width:105px;width:22vw;max-height:73px;object-fit:contain;margin:0 auto 7px;background:white;border-radius:9px;padding:3px}header h1{font-size:clamp(26px,5vw,40px);margin:0;line-height:1.15}header p{margin:7px 0 0;font-size:17px}main{width:min(1120px,100%);margin:auto;padding:12px}.panel{background:white;border:1px solid #d5e7dc;border-radius:15px;padding:14px;margin:12px 0;box-shadow:0 3px 12px #183d2a0a}p{margin:6px 0 10px}.actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.btn{border:0;border-radius:11px;background:#166b58;color:white;min-height:45px;padding:10px 13px;font:inherit;font-weight:750;cursor:pointer;touch-action:manipulation}.btn.secondary{background:#e3f2e9;color:#195b4b;border:1px solid #b9dccc}.btn:disabled{opacity:.45}.stats{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:18px;font-weight:750}.pill{background:#e8f6ed;border-radius:99px;padding:8px 12px}.lead{font-size:16px}.hint{color:#496d5f;font-size:14px}.viewer{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#314f40;border:3px solid #a3cdb3;border-radius:13px;min-height:170px}.board{width:100%;position:relative;aspect-ratio:1672 / 941;transform-origin:top left}.board img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;-webkit-user-drag:none}.target{position:absolute;width:4.7%;aspect-ratio:1;transform:translate(-50%,-50%);background:transparent;border:0;border-radius:50%;padding:0;cursor:pointer;touch-action:manipulation}.target:focus-visible{outline:3px solid #ffdd4a}.target.found:after{content:"✓";position:absolute;inset:0;border:3px solid #ffd747;border-radius:50%;box-shadow:0 0 0 3px #131d0b8a,0 0 16px #f7d23d;display:grid;place-items:center;font-size:clamp(14px,3vw,27px);color:#fff;text-shadow:0 1px 4px #1b1b1b;background:#eac82e3d}.target.flash:after{content:"?";position:absolute;inset:0;border:4px solid #e4ff63;border-radius:50%;box-shadow:0 0 25px 10px #efff7594;display:grid;place-items:center;font-weight:900;font-size:27px;color:#fff;animation:pulse .55s alternate infinite}@keyframes pulse{from{transform:scale(.9)}to{transform:scale(1.3)}}.gameNote{text-align:center;color:#4d6b5f;font-size:14px;margin:7px 0}.placeholder{padding:30px 20px;text-align:center;color:#fff}.placeholder a{color:#fff}.bar{height:9px;border-radius:8px;background:#d8e8df;overflow:hidden;margin:12px 0}.progress{width:0;height:100%;background:#17906a;transition:width .25s}.found-list{display:flex;gap:6px;flex-wrap:wrap}.found-list span{border:1px solid #a9c6b1;border-radius:7px;padding:4px 7px;font-size:13px;background:#ebf7ee}.found-list span.yes{background:#ffe99c;border-color:#e8be3f}.overlay{position:fixed;inset:0;background:#092218e0;z-index:30;display:flex;justify-content:center;align-items:center;padding:14px}.dialog{width:min(100%,470px);border-radius:19px;background:white;padding:23px;text-align:center;box-shadow:0 22px 70px #0008}.dialog h2{font-size:27px;margin:4px 0 9px}.dialog p{font-size:17px}.dialog .actions{margin-top:16px}.hidden,[hidden]{display:none!important}footer{text-align:center;color:#547061;font-size:13px;margin:24px 0}@media(max-width:620px){header{padding:14px 10px}.panel{padding:12px;margin:9px 0}.stats{font-size:15px}.btn{font-size:15px}.target{width:7%;min-width:0}.lead{font-size:15px}}
-</style></head><body><header><img class="clublogo" src="vereinslogo.jpg" alt="VfL Giften" onerror="this.hidden=true"><h1>🐶 Clubhaus Suchspiel</h1><p>Spiel 1: Finde die 10 Hundewelpen!</p></header>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eff7f1;color:#203b35;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}header{background:linear-gradient(135deg,#145a49,#21826a);color:white;text-align:center;padding:20px 12px 16px}header .clublogo{display:block;max-width:105px;width:22vw;max-height:73px;object-fit:contain;margin:0 auto 7px;background:white;border-radius:9px;padding:3px}header h1{font-size:clamp(26px,5vw,40px);margin:0;line-height:1.15}header p{margin:7px 0 0;font-size:17px}.round-label{display:inline-block;margin-top:9px;padding:5px 13px;background:#ffffff25;border-radius:99px;font-weight:750}main{width:min(1120px,100%);margin:auto;padding:12px}.panel{background:white;border:1px solid #d5e7dc;border-radius:15px;padding:14px;margin:12px 0;box-shadow:0 3px 12px #183d2a0a}p{margin:6px 0 10px}.actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.btn{border:0;border-radius:11px;background:#166b58;color:white;min-height:45px;padding:10px 13px;font:inherit;font-weight:750;cursor:pointer;touch-action:manipulation}.btn.secondary{background:#e3f2e9;color:#195b4b;border:1px solid #b9dccc}.btn:disabled{opacity:.45}.stats{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:18px;font-weight:750}.pill{background:#e8f6ed;border-radius:99px;padding:8px 12px}.lead{font-size:16px}.hint{color:#496d5f;font-size:14px}.viewer{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#314f40;border:3px solid #a3cdb3;border-radius:13px;min-height:170px}.board{width:100%;position:relative;aspect-ratio:1672 / 941;transform-origin:top left}.board img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;-webkit-user-drag:none}.target{position:absolute;width:4.7%;aspect-ratio:1;transform:translate(-50%,-50%);background:transparent;border:0;border-radius:50%;padding:0;cursor:pointer;touch-action:manipulation}.target:focus-visible{outline:3px solid #ffdd4a}.target.found:after{content:"✓";position:absolute;inset:0;border:3px solid #ffd747;border-radius:50%;box-shadow:0 0 0 3px #131d0b8a,0 0 16px #f7d23d;display:grid;place-items:center;font-size:clamp(14px,3vw,27px);color:#fff;text-shadow:0 1px 4px #1b1b1b;background:#eac82e3d}.target.flash:after{content:"?";position:absolute;inset:0;border:4px solid #e4ff63;border-radius:50%;box-shadow:0 0 25px 10px #efff7594;display:grid;place-items:center;font-weight:900;font-size:27px;color:#fff;animation:pulse .55s alternate infinite}@keyframes pulse{from{transform:scale(.9)}to{transform:scale(1.3)}}.gameNote{text-align:center;color:#4d6b5f;font-size:14px;margin:7px 0}.placeholder{padding:30px 20px;text-align:center;color:#fff}.placeholder a{color:#fff}.bar{height:9px;border-radius:8px;background:#d8e8df;overflow:hidden;margin:12px 0}.progress{width:0;height:100%;background:#17906a;transition:width .25s}.found-list{display:flex;gap:6px;flex-wrap:wrap}.found-list span{border:1px solid #a9c6b1;border-radius:7px;padding:4px 7px;font-size:13px;background:#ebf7ee}.found-list span.yes{background:#ffe99c;border-color:#e8be3f}.overlay{position:fixed;inset:0;background:#092218e0;z-index:30;display:flex;justify-content:center;align-items:center;padding:14px}.dialog{width:min(100%,470px);border-radius:19px;background:white;padding:23px;text-align:center;box-shadow:0 22px 70px #0008}.dialog h2{font-size:27px;margin:4px 0 9px}.dialog p{font-size:17px}.dialog .actions{margin-top:16px}.floating-help{position:fixed;bottom:max(12px,env(safe-area-inset-bottom));right:12px;z-index:25;border:2px solid white;box-shadow:0 4px 18px #072d25a8;background:#0c6d58;color:white;border-radius:50px;padding:12px 18px;font-size:16px;font-weight:800;cursor:pointer;touch-action:manipulation}.floating-help:disabled{opacity:.55}.hidden,[hidden]{display:none!important}footer{text-align:center;color:#547061;font-size:13px;margin:24px 0}@media(max-width:620px){header{padding:14px 10px}.panel{padding:12px;margin:9px 0}.stats{font-size:15px}.btn{font-size:15px}.target{width:7%;min-width:0}.lead{font-size:15px}}
+</style></head><body><header><img class="clublogo" src="vereinslogo.jpg" alt="VfL Giften" onerror="this.hidden=true"><h1>🐶 Clubhaus Suchspiel</h1><p>Finde die 10 Hundewelpen!</p><span class="round-label" id="roundHeading">Runde 1 von 2</span></header>
 <main>
-<section class="panel"><p class="lead"><b>Deine Aufgabe:</b> Auf diesem Bild haben sich zehn Hundewelpen versteckt. Sieh genau hin und <b>tippe jeden gefundenen Welpen direkt im Bild an</b>. Gefundene Welpen werden gelb markiert.</p><p class="hint">Tipp: Einige Welpen schauen nur mit dem Kopf hervor. Du kannst das Bild vergrößern und verschieben.</p><div class="actions"><button id="start" class="btn">▶ Suchspiel starten</button><button id="help" class="btn secondary" disabled>💡 Hilfe</button><button id="zoomIn" class="btn secondary">＋ Vergrößern</button><button id="zoomOut" class="btn secondary">－ Verkleinern</button><button id="reset" class="btn secondary">↻ Neustart</button></div></section>
-<section class="panel"><div class="stats"><span class="pill" id="count">🐶 0 von 10 gefunden</span><span id="clock">⏱ 00:00</span><span id="zoomLabel">🔎 100 %</span></div><div class="bar"><div class="progress" id="progress"></div></div><div class="viewer" id="viewer"><div class="board" id="board"><img id="scene" src="welpen-suchbild.webp" alt="Fotorealistisches Clubhausgelände mit zehn versteckten Hundewelpen" draggable="false"><div id="targetLayer"></div></div><div class="placeholder hidden" id="missing">🐾 Das Suchbild ist noch nicht hochgeladen. Sobald die Datei <b>welpen-suchbild.webp</b> im Clubhaus-Ordner liegt, erscheint hier die komplette Szene.</div></div><p class="gameNote" id="status">Starte das Spiel und suche die zehn Welpen.</p></section>
+<section class="panel"><p class="lead"><b>Deine Aufgabe:</b> Auf diesem Bild haben sich zehn Hundewelpen versteckt. In jeder Runde gibt es ein neues Bild und neue Verstecke. Sieh genau hin und <b>tippe jeden gefundenen Welpen direkt im Bild an</b>. Gefundene Welpen werden gelb markiert.</p><p class="hint">Tipp: Einige Welpen schauen nur mit dem Kopf hervor. Du kannst das Bild vergrößern und verschieben.</p><div class="actions"><button id="start" class="btn">▶ Suchspiel starten</button><button id="help" class="btn secondary">💡 Hilfe</button><button id="zoomIn" class="btn secondary">＋ Vergrößern</button><button id="zoomOut" class="btn secondary">－ Verkleinern</button><button id="reset" class="btn secondary">↻ Neustart</button></div></section>
+<section class="panel"><div class="stats"><span class="pill" id="count">🐶 0 von 10 gefunden</span><span id="clock">⏱ 00:00</span><span id="zoomLabel">🔎 100 %</span></div><div class="bar"><div class="progress" id="progress"></div></div><div class="actions" style="margin-bottom:10px;justify-content:space-between"><b id="imageHeading">Bild 1 – Finde 10 Welpen</b><button id="imageHelp" class="btn">💡 Hilfe zum Bild</button></div><div class="viewer" id="viewer"><div class="board" id="board"><img id="scene" src="welpen-suchbild.webp" alt="Fotorealistisches Suchbild mit zehn versteckten Hundewelpen" draggable="false"><div id="targetLayer"></div></div><div class="placeholder hidden" id="missing">🐾 Das Suchbild ist noch nicht hochgeladen. Sobald die Datei <b>welpen-suchbild.webp</b> im Clubhaus-Ordner liegt, erscheint hier die komplette Szene.</div></div><p class="gameNote" id="status">Starte das Spiel und suche die zehn Welpen.</p><div class="actions"><button id="nextRoundOutside" class="btn" hidden>🐶 Runde 2 starten</button></div></section>
 <section class="panel"><b>Deine Fundliste</b><div class="found-list" id="foundList"></div><p class="hint">Die Hilfefunktion zeigt dir kurz den Bereich eines noch nicht gefundenen Welpen. Sie zählt den Welpen nicht automatisch.</p></section>
 <footer>Clubhaus Suchspiel · VfL Giften · Eine kleine Spielreihe für die Clubhausgruppe · Keine Anmeldung nötig</footer>
 </main>
-<div class="overlay" id="overlay" hidden><div class="dialog"><h2 id="resultTitle">🎉 Alle Welpen gefunden!</h2><p id="resultText"></p><div class="actions"><button class="btn" id="playAgain">↻ Noch einmal spielen</button><button class="btn secondary" id="close">Schließen</button></div></div></div>
+<button class="floating-help" id="floatingHelp">💡 Hilfe</button><div class="overlay" id="overlay" hidden><div class="dialog"><h2 id="resultTitle">🎉 Alle Welpen gefunden!</h2><p id="resultText"></p><div class="actions"><button class="btn" id="nextRound" hidden>🐾 Runde 2 starten</button><button class="btn" id="playAgain">↻ Runde erneut spielen</button><button class="btn secondary" id="close">Schließen</button></div></div></div>
 <script>
-(()=>{'use strict';const $=id=>document.getElementById(id);
-const pups=[
-{x:14.7,y:47.3,label:'an der Treppe'},
-{x:6.2,y:55.9,label:'bei den Hortensien'},
-{x:27.4,y:51.1,label:'an der Steinmauer'},
-{x:48.7,y:51.2,label:'am Gebüsch'},
-{x:59.0,y:35.2,label:'am Fußballplatz'},
-{x:82.5,y:42.6,label:'am Holzschuppen'},
-{x:81.0,y:65.2,label:'unter der Bank'},
-{x:91.8,y:61.7,label:'am Baum'},
-{x:33.5,y:71.6,label:'hinter dem Blumentopf'},
-{x:15.5,y:82.0,label:'hinter dem Zaun'}];
-let found=new Set(),active=false,level=1,elapsed=0,startTime=0,timer=null,hints=0,ready=false,flashTimeout=null;
-const layer=$('targetLayer'),board=$('board'),viewer=$('viewer');
-function format(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
-function render(){layer.replaceChildren();pups.forEach((p,i)=>{const b=document.createElement('button');b.className='target'+(found.has(i)?' found':'');b.style.left=p.x+'%';b.style.top=p.y+'%';b.title='Welpe '+(i+1);b.setAttribute('aria-label','Welpe '+(i+1)+(found.has(i)?' bereits gefunden':''));b.onclick=e=>{e.preventDefault();if(!active||found.has(i))return;found.add(i);hints=0;update();render();$('status').textContent='🐾 Toll! Welpe '+found.size+' gefunden: '+p.label+'.';if(found.size===pups.length)finish()};layer.append(b)});const list=$('foundList');list.replaceChildren();pups.forEach((_,i)=>{let s=document.createElement('span');s.className=found.has(i)?'yes':'';s.textContent=found.has(i)?'✓ Welpe '+(i+1):'○ Welpe '+(i+1);list.append(s)})}
-function update(){$('count').textContent='🐶 '+found.size+' von 10 gefunden';$('clock').textContent='⏱ '+format(elapsed);$('progress').style.width=(found.size*10)+'%';$('help').disabled=!active||!ready||found.size===10}
-function stopTimer(){clearInterval(timer);timer=null}
-function start(){if(!ready){$('status').textContent='Das Bild fehlt noch auf GitHub.';return}stopTimer();found.clear();active=true;elapsed=0;startTime=Date.now();hints=0;$('start').textContent='⏸ Spiel läuft';$('start').disabled=true;$('overlay').hidden=true;$('status').textContent='Viel Spaß! Tippe die versteckten Hundewelpen direkt im Bild an.';render();update();timer=setInterval(()=>{elapsed=Math.floor((Date.now()-startTime)/1000);update()},500)}
-function finish(){active=false;stopTimer();$('start').disabled=false;$('start').textContent='▶ Erneut starten';$('help').disabled=true;$('resultTitle').textContent='🎉 Alle zehn Welpen gefunden!';$('resultText').textContent='Geschafft! Du hast alle zehn Hundewelpen in '+format(elapsed)+' gefunden.';$('overlay').hidden=false}
-function zoom(n){level=Math.max(1,Math.min(3,n));const w=viewer.clientWidth;board.style.width=(level*100)+'%';$('zoomLabel').textContent='🔎 '+Math.round(level*100)+' %';if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}}
-$('zoomIn').onclick=()=>zoom(Math.round((level+.5)*2)/2);$('zoomOut').onclick=()=>zoom(Math.round((level-.5)*2)/2);
-$('start').onclick=start;$('reset').onclick=()=>{if(!ready)return;start();zoom(1)};$('playAgain').onclick=()=>{start();zoom(1)};$('close').onclick=()=>$('overlay').hidden=true;
-$('help').onclick=()=>{if(!active||found.size===10)return;let i=pups.findIndex((p,index)=>!found.has(index));if(i<0)return;const p=pups[i];const b=layer.children[i];b.classList.add('flash');const x=(p.x/100)*(board.offsetWidth),y=(p.y/100)*board.offsetHeight;viewer.scrollTo({left:Math.max(0,x-viewer.clientWidth/2),top:Math.max(0,y-viewer.clientHeight/2),behavior:'smooth'});$('status').textContent='💡 Schau einmal '+p.label+'.';clearTimeout(flashTimeout);flashTimeout=setTimeout(()=>b.classList.remove('flash'),2200)};
-$('scene').onload=()=>{ready=true;$('missing').classList.add('hidden');board.hidden=false;$('start').disabled=false;$('status').textContent='Bereit! Starte das Suchspiel.'};
-$('scene').onerror=()=>{ready=false;board.hidden=true;$('missing').classList.remove('hidden');$('start').disabled=true;$('status').textContent='Das Spielbild muss noch auf GitHub hochgeladen werden.'};
-render();update();if($('scene').complete&&$('scene').naturalWidth>0){$('scene').onload()}else if($('scene').complete){$('scene').onerror()}
+(()=>{
+'use strict';const $=id=>document.getElementById(id);
+const rounds=[
+{file:'welpen-suchbild.webp',title:'Bild 1 – Finde 10 Welpen',spots:[
+{x:14.7,y:47.3,label:'an der Treppe'},{x:6.2,y:55.9,label:'bei den Hortensien'},
+{x:27.4,y:51.1,label:'an der Steinmauer'},{x:48.7,y:51.2,label:'am Gebüsch'},
+{x:59.0,y:35.2,label:'am Fußballplatz'},{x:82.5,y:42.6,label:'am Holzschuppen'},
+{x:81.0,y:65.2,label:'unter der Bank'},{x:91.8,y:61.7,label:'am Baum'},
+{x:33.5,y:71.6,label:'hinter dem Blumentopf'},{x:15.5,y:82.0,label:'hinter dem Zaun'}]},
+{file:'welpen-runde-2.webp',title:'Bild 2 – Neue Verstecke',spots:[
+{x:9.4,y:34.5,label:'am Fenster'},{x:26.9,y:16.3,label:'im Blumenkorb'},
+{x:49.5,y:37.2,label:'im Holzschuppen'},{x:66.5,y:32.1,label:'im großen Busch'},
+{x:88.0,y:36.3,label:'hinter der Gartenbank'},{x:74.4,y:56.8,label:'bei den gelben Blumen'},
+{x:54.2,y:71.1,label:'auf einem Stein am Teich'},{x:26.7,y:73.4,label:'unter dem Tisch'},
+{x:6.5,y:72.1,label:'im Lavendel'},{x:93.0,y:75.1,label:'beim Holzstapel'}]}];
+let round=0,found=new Set(),active=false,ready=false,level=1,startTime=0,elapsed=0,timer=null,flashTimeout=null,loading=false;
+const layer=$('targetLayer'),board=$('board'),viewer=$('viewer'),scene=$('scene');
+const current=()=>rounds[round],format=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function stopTimer(){if(timer!==null)clearInterval(timer);timer=null}
+function update(){
+$('count').textContent='🐶 '+found.size+' von 10 gefunden';
+$('clock').textContent='⏱ '+format(elapsed);
+$('progress').style.width=(found.size*10)+'%';
+const hintReady=active&&ready&&found.size<10;
+['help','imageHelp','floatingHelp'].forEach(id=>$(id).disabled=!hintReady);
+$('roundHeading').textContent='Runde '+(round+1)+' von 2';
+$('imageHeading').textContent=current().title;
+}
+function render(){
+layer.replaceChildren();const pups=current().spots;
+pups.forEach((p,i)=>{const b=document.createElement('button');b.className='target'+(found.has(i)?' found':'');b.style.left=p.x+'%';b.style.top=p.y+'%';b.title='Welpe '+(i+1);b.setAttribute('aria-label','Welpe '+(i+1)+(found.has(i)?' gefunden':''));b.onclick=e=>{
+e.preventDefault();if(!active||found.has(i))return;found.add(i);update();render();$('status').textContent='🐾 Toll! Du hast einen Welpen '+p.label+' entdeckt.';if(found.size===pups.length)finish();};layer.append(b)});
+$('foundList').replaceChildren();pups.forEach((p,i)=>{let el=document.createElement('span');el.className=found.has(i)?'yes':'';el.textContent=found.has(i)?'✓ Welpe '+(i+1):'○ Welpe '+(i+1);$('foundList').append(el)});
+}
+function zoom(n){
+level=Math.max(1,Math.min(3,n));board.style.width=(level*100)+'%';
+$('zoomLabel').textContent='🔎 '+Math.round(level*100)+' %';
+if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}
+}
+function start(){
+if(!ready){$('status').textContent='Das Bild für diese Runde ist noch nicht verfügbar.';return}
+stopTimer();found.clear();active=true;elapsed=0;startTime=Date.now();
+$('start').disabled=true;$('start').textContent='🐶 Runde läuft';
+$('overlay').hidden=true;$('nextRoundOutside').hidden=true;
+$('status').textContent='Viel Spaß in Runde '+(round+1)+'! Tippe die zehn Welpen direkt im Bild an.';
+render();update();zoom(1);
+timer=setInterval(()=>{elapsed=Math.floor((Date.now()-startTime)/1000);update()},500);
+}
+function loadRound(n){
+stopTimer();active=false;ready=false;round=n;found.clear();elapsed=0;zoom(1);
+$('overlay').hidden=true;$('nextRoundOutside').hidden=true;
+$('start').disabled=true;$('start').textContent='▶ Runde '+(round+1)+' starten';
+$('status').textContent='Bild für Runde '+(round+1)+' wird geladen.';
+render();update();scene.src=current().file;
+}
+function finish(){
+active=false;stopTimer();$('start').disabled=false;$('start').textContent='↻ Runde erneut starten';
+$('nextRound').hidden=round!==0;
+$('nextRoundOutside').hidden=round!==0;
+$('resultTitle').textContent=round===0?'🎉 Runde 1 geschafft!':'🏆 Beide Runden geschafft!';
+$('resultText').textContent=round===0?'Super! Du hast alle zehn Welpen in '+format(elapsed)+' gefunden. Jetzt warten zehn neue Verstecke auf dich in Runde 2.':'Großartig! Du hast auch in Runde 2 alle zehn Hundewelpen entdeckt – insgesamt 20 Welpen in zwei Bildern!';
+$('overlay').hidden=false;update();
+}
+function help(){
+if(!active||!ready)return;
+const i=current().spots.findIndex((p,index)=>!found.has(index));
+if(i<0)return;const p=current().spots[i],b=layer.children[i];
+clearTimeout(flashTimeout);b.classList.add('flash');
+const x=(p.x/100)*board.offsetWidth,y=(p.y/100)*board.offsetHeight;
+viewer.scrollTo({left:Math.max(0,x-viewer.clientWidth/2),top:Math.max(0,y-viewer.clientHeight/2),behavior:'smooth'});
+$('status').textContent='💡 Hinweis: Suche '+p.label+'. Der Bereich blinkt kurz.';
+flashTimeout=setTimeout(()=>b.classList.remove('flash'),2500);
+}
+$('help').onclick=help;$('imageHelp').onclick=help;$('floatingHelp').onclick=help;
+$('zoomIn').onclick=()=>zoom(level+.5);$('zoomOut').onclick=()=>zoom(level-.5);
+$('start').onclick=start;$('reset').onclick=()=>start();
+$('playAgain').onclick=()=>start();$('close').onclick=()=>$('overlay').hidden=true;
+$('nextRound').onclick=()=>loadRound(1);$('nextRoundOutside').onclick=()=>loadRound(1);
+scene.onload=()=>{ready=true;board.hidden=false;$('missing').classList.add('hidden');$('start').disabled=false;$('status').textContent='Bild geladen. Jetzt Runde '+(round+1)+' starten.';update();};
+scene.onerror=()=>{ready=false;active=false;stopTimer();board.hidden=true;$('missing').classList.remove('hidden');$('missing').innerHTML='🐾 Das Bild für Runde '+(round+1)+' fehlt noch auf GitHub. Benötigte Datei: <b>'+current().file+'</b>.';$('start').disabled=true;$('status').textContent='Runde '+(round+1)+' ist vorbereitet. Das passende Suchbild muss noch hochgeladen werden.';update();};
+render();update();if(scene.complete&&scene.naturalWidth>0){scene.onload()}else if(scene.complete){scene.onerror()}
 })();
 </script></body></html>
