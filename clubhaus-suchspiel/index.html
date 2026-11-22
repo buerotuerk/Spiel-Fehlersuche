@@ -43,8 +43,10 @@ border-radius:0;background:#253a2e;touch-action:pan-x pan-y}
 /* Vollbild-Fit im Querformat: erst ganzes Bild, erst durch Pinch groesser. */
 .game-panel{bottom:calc(41px + env(safe-area-inset-bottom))!important}
 .game-panel>.actions{display:none!important}
-.game-panel .viewer{display:block;overflow:auto;min-height:0;max-height:none!important;border:none;background:#172f24;overscroll-behavior:contain}
-.game-panel .board{margin:auto;max-width:none;flex:none}
+.game-panel .viewer{display:block;overflow:auto;min-height:0;max-height:none!important;border:none;background:#172f24;overscroll-behavior:contain;container-type:size}
+.game-panel .board{margin:0 auto;max-width:none;flex:none;width:min(100cqw,177.68cqh);aspect-ratio:1672/941}
+/* Safari-Fallback fuer alte Browser */
+@supports not (width:100cqw){.game-panel .board{width:100%}}
 .game-toolbar{height:41px!important;min-height:41px!important;padding:3px 5px calc(3px + env(safe-area-inset-bottom))!important;gap:6px;justify-content:center;flex-wrap:nowrap}
 .game-toolbar .btn{height:32px;min-height:32px!important;font-size:12px!important;padding:3px 10px!important;border-radius:7px}
 .game-toolbar .start{min-width:0!important}
@@ -86,22 +88,26 @@ const layer=$('targetLayer'),board=$('board'),viewer=$('viewer'),scene=$('scene'
 const imageRatio=1672/941;
 let baseWidth=0;
 function fitBoard(){
-const w=Math.max(1,viewer.clientWidth),h=Math.max(1,viewer.clientHeight);
-const fit=Math.max(1,Math.min(w,h*imageRatio));
-const before=baseWidth||fit,ratio=fit/before;
-baseWidth=fit;
-board.style.width=(baseWidth*level)+'px';
-if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}
-else {viewer.scrollLeft*=ratio;viewer.scrollTop*=ratio}
+if(level===1){
+  board.style.removeProperty('width');
+  const vw=viewer.clientWidth,vh=viewer.clientHeight;
+  const cssWidth=board.getBoundingClientRect().width;
+  baseWidth=Math.max(1,Math.min(vw,vh*imageRatio,cssWidth||vw));
+  viewer.scrollLeft=0;viewer.scrollTop=0;
+}else{
+  const oldBase=baseWidth||1;
+  const w=Math.max(1,Math.min(viewer.clientWidth,viewer.clientHeight*imageRatio));
+  baseWidth=w;
+  board.style.width=(baseWidth*level)+'px';
+  viewer.scrollLeft*=w/oldBase;viewer.scrollTop*=w/oldBase;
 }
-window.addEventListener('resize',fitBoard);
-if(window.visualViewport)window.visualViewport.addEventListener('resize',fitBoard);
-window.addEventListener('orientationchange',()=>{
-level=1;
-requestAnimationFrame(()=>{fitBoard();requestAnimationFrame(fitBoard)});
-});
-window.addEventListener('pageshow',()=>requestAnimationFrame(fitBoard));
-if(window.ResizeObserver)new ResizeObserver(fitBoard).observe(viewer);
+}
+function stableFit(){requestAnimationFrame(fitBoard);setTimeout(fitBoard,180);setTimeout(fitBoard,500)}
+window.addEventListener('resize',stableFit);
+if(window.visualViewport)window.visualViewport.addEventListener('resize',stableFit);
+window.addEventListener('orientationchange',()=>{level=1;stableFit();setTimeout(fitBoard,850)});
+window.addEventListener('pageshow',stableFit);
+if(window.ResizeObserver)new ResizeObserver(()=>requestAnimationFrame(fitBoard)).observe(viewer);
 const current=()=>rounds[round],format=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
 function stopTimer(){if(timer!==null)clearInterval(timer);timer=null}
 function update(){
@@ -130,7 +136,12 @@ const rect=viewer.getBoundingClientRect();
 const cx=anchor?anchor.x-rect.left:viewer.clientWidth/2;
 const cy=anchor?anchor.y-rect.top:viewer.clientHeight/2;
 const left=viewer.scrollLeft+cx,top=viewer.scrollTop+cy;
-level=newLevel;board.style.width=((baseWidth||Math.min(viewer.clientWidth,viewer.clientHeight*imageRatio))*level)+'px';
+level=newLevel;
+if(level===1){board.style.removeProperty('width')}else{
+ const naturalBase=Math.max(1,Math.min(viewer.clientWidth,viewer.clientHeight*imageRatio));
+ if(!baseWidth)baseWidth=naturalBase;
+ board.style.width=(baseWidth*level)+'px';
+}
 $('zoomLabel').textContent='🔎 '+Math.round(level*100)+' %';
 const scale=newLevel/oldLevel;
 viewer.scrollLeft=Math.max(0,left*scale-cx);
