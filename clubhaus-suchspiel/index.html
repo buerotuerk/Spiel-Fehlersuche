@@ -39,6 +39,24 @@ border-radius:0;background:#253a2e;touch-action:pan-x pan-y}
  .game-toolbar .start{min-width:88px}
  .game-toolbar .zoom-btn{min-width:29px}
 }
+
+/* Vollbild-Fit im Querformat: erst ganzes Bild, erst durch Pinch groesser. */
+.game-panel{bottom:calc(41px + env(safe-area-inset-bottom))!important}
+.game-panel>.actions{display:none!important}
+.game-panel .viewer{display:block;overflow:auto;min-height:0;max-height:none!important;border:none;background:#172f24;overscroll-behavior:contain}
+.game-panel .board{margin:auto;max-width:none;flex:none}
+.game-toolbar{height:41px!important;min-height:41px!important;padding:3px 5px calc(3px + env(safe-area-inset-bottom))!important;gap:6px;justify-content:center;flex-wrap:nowrap}
+.game-toolbar .btn{height:32px;min-height:32px!important;font-size:12px!important;padding:3px 10px!important;border-radius:7px}
+.game-toolbar .start{min-width:0!important}
+.game-toolbar .hint-btn{min-width:0}
+.game-toolbar .zoom-btn{display:none!important}
+.game-toolbar .exit-btn{font-size:11px!important;background:transparent;border:0;color:#527266}
+.game-toolbar .round-btn{background:transparent;color:#315f4f;border:0;font-size:11px!important;font-weight:600}
+@media(orientation:landscape) and (max-height:600px){
+.game-panel{bottom:calc(37px + env(safe-area-inset-bottom))!important}
+.game-toolbar{height:37px!important;min-height:37px!important;padding:2px 5px calc(2px + env(safe-area-inset-bottom))!important}
+.game-toolbar .btn{height:30px;min-height:30px!important}
+}
 </style></head><body><header><img class="clublogo" src="vereinslogo.jpg" alt="VfL Giften" onerror="this.hidden=true"><h1>🐶 Clubhaus Suchspiel</h1><p>Finde die 10 Hundewelpen!</p><span class="round-label" id="roundHeading">Runde 1 von 2</span></header>
 <main>
 <section class="panel"><p class="lead"><b>Deine Aufgabe:</b> Auf diesem Bild haben sich zehn Hundewelpen versteckt. In jeder Runde gibt es ein neues Bild und neue Verstecke. Sieh genau hin und <b>tippe jeden gefundenen Welpen direkt im Bild an</b>. Gefundene Welpen werden gelb markiert.</p><p class="hint">Tipp: Drehe dein Handy ins Querformat. Du kannst das Suchbild mit zwei Fingern auseinanderziehen, um es zu vergrößern, und die Finger zusammenschieben, um es zu verkleinern. Alternativ auf + oder − tippen. Mit „100 %“ kommst du immer zur Originalgröße zurück. Das vergrößerte Bild lässt sich mit dem Finger verschieben.</p><div class="actions"><button id="start" class="btn">▶ Suchspiel starten</button><button id="help" class="btn secondary">💡 Hilfe</button><button id="zoomIn" class="btn secondary">＋ Vergrößern</button><button id="zoomOut" class="btn secondary">－ Verkleinern</button><button id="zoomReset" class="btn secondary">🔎 100 % – Originalgröße</button><button id="reset" class="btn secondary">↻ Neustart</button></div></section>
@@ -46,7 +64,7 @@ border-radius:0;background:#253a2e;touch-action:pan-x pan-y}
 <section class="panel"><b>Deine Fundliste</b><div class="found-list" id="foundList"></div><p class="hint">Die Hilfefunktion zeigt dir kurz den Bereich eines noch nicht gefundenen Welpen. Sie zählt den Welpen nicht automatisch.</p></section>
 <footer>Clubhaus Suchspiel · VfL Giften · Eine kleine Spielreihe für die Clubhausgruppe · Keine Anmeldung nötig</footer>
 </main>
-<nav class="game-toolbar" aria-label="Spielbedienung"><button id="floatingStart" class="btn start">▶ Spiel starten</button><button id="floatingHelp" class="btn hint-btn">💡 Hilfe</button><button id="floatingZoomIn" class="btn secondary zoom-btn" aria-label="Bild vergrößern">＋</button><button id="floatingZoomOut" class="btn secondary zoom-btn" aria-label="Bild verkleinern">－</button><button id="floatingZoomReset" class="btn secondary zoom-btn" aria-label="Originalgröße wiederherstellen" title="Originalgröße 100 %" style="font-size:13px">100%</button><button id="exitGame" class="btn exit-btn">Beenden</button></nav><div class="overlay" id="overlay" hidden><div class="dialog"><h2 id="resultTitle">🎉 Alle Welpen gefunden!</h2><p id="resultText"></p><div class="actions"><button class="btn" id="nextRound" hidden>🐾 Runde 2 starten</button><button class="btn" id="playAgain">↻ Runde erneut spielen</button><button class="btn secondary" id="close">Schließen</button></div></div></div>
+<nav class="game-toolbar" aria-label="Spielbedienung"><button id="floatingStart" class="btn start">▶ Spiel starten</button><button id="floatingHelp" class="btn hint-btn">💡 Hilfe</button><button id="floatingZoomIn" class="btn secondary zoom-btn" aria-label="Bild vergrößern">＋</button><button id="floatingZoomOut" class="btn secondary zoom-btn" aria-label="Bild verkleinern">－</button><button id="floatingZoomReset" class="btn secondary zoom-btn" aria-label="Originalgröße wiederherstellen" title="Originalgröße 100 %" style="font-size:13px">100%</button><button id="quickRound" class="btn round-btn">Runde 2 ›</button><button id="exitGame" class="btn exit-btn" title="Spiel beenden">✕</button></nav><div class="overlay" id="overlay" hidden><div class="dialog"><h2 id="resultTitle">🎉 Alle Welpen gefunden!</h2><p id="resultText"></p><div class="actions"><button class="btn" id="nextRound" hidden>🐾 Runde 2 starten</button><button class="btn" id="playAgain">↻ Runde erneut spielen</button><button class="btn secondary" id="close">Schließen</button></div></div></div>
 <script>
 (()=>{
 'use strict';const $=id=>document.getElementById(id);
@@ -65,6 +83,19 @@ const rounds=[
 {x:6.5,y:72.1,label:'im Lavendel'},{x:93.0,y:75.1,label:'beim Holzstapel'}]}];
 let round=0,found=new Set(),active=false,ready=false,level=1,startTime=0,elapsed=0,timer=null,flashTimeout=null,startWhenLoaded=false;
 const layer=$('targetLayer'),board=$('board'),viewer=$('viewer'),scene=$('scene');
+const imageRatio=1672/941;
+let baseWidth=0;
+function fitBoard(){
+const w=Math.max(1,viewer.clientWidth),h=Math.max(1,viewer.clientHeight);
+const fit=Math.max(1,Math.min(w,h*imageRatio));
+const before=baseWidth||fit,ratio=fit/before;
+baseWidth=fit;
+board.style.width=(baseWidth*level)+'px';
+if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}
+else {viewer.scrollLeft*=ratio;viewer.scrollTop*=ratio}
+}
+window.addEventListener('resize',fitBoard);
+if(window.ResizeObserver)new ResizeObserver(fitBoard).observe(viewer);
 const current=()=>rounds[round],format=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
 function stopTimer(){if(timer!==null)clearInterval(timer);timer=null}
 function update(){
@@ -73,6 +104,7 @@ $('clock').textContent='⏱ '+format(elapsed);
 $('progress').style.width=(found.size*10)+'%';
 const hintReady=active&&ready&&found.size<10;
 $('skipRound').textContent=round===0?'⏭ Direkt zu Runde 2':'↩ Zurück zu Runde 1';
+$('quickRound').textContent=round===0?'Runde 2 ›':'‹ Runde 1';
 ['help','imageHelp','floatingHelp'].forEach(id=>$(id).disabled=!hintReady);
 $('floatingStart').disabled=!ready||active;
 $('floatingStart').textContent=active?'✓ Spiel läuft':round===0?'▶ Spiel starten':'▶ Runde 2 starten';
@@ -92,7 +124,7 @@ const rect=viewer.getBoundingClientRect();
 const cx=anchor?anchor.x-rect.left:viewer.clientWidth/2;
 const cy=anchor?anchor.y-rect.top:viewer.clientHeight/2;
 const left=viewer.scrollLeft+cx,top=viewer.scrollTop+cy;
-level=newLevel;board.style.width=(level*100)+'%';
+level=newLevel;board.style.width=((baseWidth||Math.min(viewer.clientWidth,viewer.clientHeight*imageRatio))*level)+'px';
 $('zoomLabel').textContent='🔎 '+Math.round(level*100)+' %';
 const scale=newLevel/oldLevel;
 viewer.scrollLeft=Math.max(0,left*scale-cx);
@@ -105,11 +137,11 @@ stopTimer();found.clear();active=true;elapsed=0;startTime=Date.now();
 $('start').disabled=true;$('start').textContent='🐶 Runde läuft';
 $('overlay').hidden=true;$('nextRoundOutside').hidden=true;
 $('status').textContent='Viel Spaß in Runde '+(round+1)+'! Tippe die zehn Welpen direkt im Bild an.';
-render();update();zoom(1);
+render();update();zoom(1);fitBoard();
 timer=setInterval(()=>{elapsed=Math.floor((Date.now()-startTime)/1000);update()},500);
 }
 function loadRound(n,autoStart=false){
-stopTimer();active=false;ready=false;round=n;found.clear();elapsed=0;zoom(1);
+stopTimer();active=false;ready=false;round=n;found.clear();elapsed=0;zoom(1);fitBoard();
 startWhenLoaded=autoStart;
 $('overlay').hidden=true;$('nextRoundOutside').hidden=true;
 $('start').disabled=true;$('start').textContent='▶ Runde '+(round+1)+' starten';
@@ -162,12 +194,12 @@ $('overlay').hidden=false;update();
 $('zoomIn').onclick=()=>zoom(level+.5);$('zoomOut').onclick=()=>zoom(level-.5);
 $('floatingZoomIn').onclick=()=>zoom(level+.5);$('floatingZoomOut').onclick=()=>zoom(level-.5);
 ['zoomReset','imageZoomReset','floatingZoomReset'].forEach(id=>$(id).onclick=()=>zoom(1));
-$('skipRound').onclick=()=>loadRound(round===0?1:0,true);
+$('skipRound').onclick=()=>loadRound(round===0?1:0,true);$('quickRound').onclick=()=>loadRound(round===0?1:0,true);
 $('start').onclick=start;$('reset').onclick=()=>start();
 $('playAgain').onclick=()=>start();$('close').onclick=()=>$('overlay').hidden=true;
 $('nextRound').onclick=()=>loadRound($('resultTitle').textContent==='Spiel beendet'?(round===0?1:0):1,true);$('nextRoundOutside').onclick=()=>loadRound(1,true);
-scene.onload=()=>{ready=true;board.hidden=false;$('missing').classList.add('hidden');$('start').disabled=active;if(startWhenLoaded){startWhenLoaded=false;start()}else if(!active)$('status').textContent='Bild geladen. Jetzt Runde '+(round+1)+' starten.';update();};
+scene.onload=()=>{ready=true;board.hidden=false;fitBoard();$('missing').classList.add('hidden');$('start').disabled=active;if(startWhenLoaded){startWhenLoaded=false;start()}else if(!active)$('status').textContent='Bild geladen. Jetzt Runde '+(round+1)+' starten.';update();};
 scene.onerror=()=>{ready=false;active=false;stopTimer();board.hidden=true;$('missing').classList.remove('hidden');$('missing').innerHTML='🐾 Das Bild für Runde '+(round+1)+' fehlt noch auf GitHub. Benötigte Datei: <b>'+current().file+'</b>.';$('start').disabled=true;$('status').textContent='Runde '+(round+1)+' ist vorbereitet. Das passende Suchbild muss noch hochgeladen werden.';update();};
-render();update();if(scene.complete&&scene.naturalWidth>0){scene.onload()}else if(scene.complete){scene.onerror()}
+render();update();fitBoard();if(scene.complete&&scene.naturalWidth>0){scene.onload()}else if(scene.complete){scene.onerror()}
 })();
 </script></body></html>
