@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "week": "2026-W49",
+  "scheduledStart": "2026-12-04T00:00:00+01:00",
+  "scheduledClose": "2026-12-06T18:00:00+01:00",
+  "timezone": "Europe/Berlin",
+  "state": "entwurf",
+  "selected": {
+    "fachquiz": null,
+    "glueck": null
+  },
+  "publishWinnersAfterClose": true,
+  "description": "Noch keine Auswahl, keine öffentliche Teilnahme und keine Ergebnis-Datenbank. Freigabe erfordert bewusstes Umschalten."
+}
