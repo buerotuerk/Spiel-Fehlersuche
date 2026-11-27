@@ -89,7 +89,15 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "review": {
+        "rating": 5,
+        "maxRating": 5,
+        "feedback": "Das Spiel ist super.",
+        "recommendation": "Inhaltlich unverändert lassen.",
+        "reviewStatus": "getestet und positiv bewertet",
+        "reviewedOn": "2026-11-27"
+      }
     },
     {
       "id": "fq-sanitaer",
