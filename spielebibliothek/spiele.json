@@ -97,7 +97,9 @@
         "recommendation": "Inhaltlich unverändert lassen.",
         "reviewStatus": "getestet und positiv bewertet",
         "reviewedOn": "2026-11-27"
-      }
+      },
+      "reviewStatus": "getestet – 5/5",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "fq-sanitaer",
@@ -159,7 +161,9 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "reviewStatus": "getestet – positiv",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "fq-werkzeuge",
@@ -221,7 +225,9 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "reviewStatus": "getestet – positiv",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "fq-waermepumpe",
@@ -283,7 +289,9 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "reviewStatus": "getestet – positiv",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "fq-umwelt",
@@ -345,7 +353,9 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "reviewStatus": "getestet – positiv",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "fq-kundendienst",
@@ -407,7 +417,9 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "reviewStatus": "getestet – positiv",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "fq-sicherheit",
@@ -469,7 +481,9 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "reviewStatus": "getestet – positiv",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "fq-knobeln",
@@ -531,7 +545,9 @@
       "status": "unbespielt",
       "ready": true,
       "estimatedMinutes": 3,
-      "questionCount": 5
+      "questionCount": 5,
+      "reviewStatus": "getestet – positiv",
+      "editorialNote": "Fragen gefallen, Schwierigkeitsgrad geeignet für Helfer bis Geselle. Beibehalten."
     },
     {
       "id": "gl-kekse",
@@ -565,7 +581,9 @@
       "type": "glueck",
       "status": "unbespielt",
       "ready": true,
-      "estimatedMinutes": 2
+      "estimatedMinutes": 2,
+      "reviewStatus": "behalten",
+      "editorialNote": "Höchste Punktzahl gewinnt; ein Versuch je Wochenrunde."
     },
     {
       "id": "gl-werkzeug",
@@ -594,8 +612,10 @@
       ],
       "type": "glueck",
       "status": "unbespielt",
-      "ready": true,
-      "estimatedMinutes": 2
+      "ready": false,
+      "estimatedMinutes": 2,
+      "reviewStatus": "zurückgestellt",
+      "editorialNote": "Ähnelt anderen Aufdeckspielen; vorerst nicht für neue Runden auswählen."
     },
     {
       "id": "gl-rohre",
@@ -628,8 +648,10 @@
       ],
       "type": "glueck",
       "status": "unbespielt",
-      "ready": true,
-      "estimatedMinutes": 2
+      "ready": false,
+      "estimatedMinutes": 2,
+      "reviewStatus": "zurückgestellt",
+      "editorialNote": "Ähnelt anderen Aufdeckspielen; vorerst nicht für neue Runden auswählen."
     },
     {
       "id": "gl-ventile",
@@ -660,8 +682,10 @@
       ],
       "type": "glueck",
       "status": "unbespielt",
-      "ready": true,
-      "estimatedMinutes": 2
+      "ready": false,
+      "estimatedMinutes": 2,
+      "reviewStatus": "zurückgestellt",
+      "editorialNote": "Ähnelt anderen Aufdeckspielen; vorerst nicht für neue Runden auswählen."
     },
     {
       "id": "gl-sterne",
@@ -699,7 +723,9 @@
       "type": "glueck",
       "status": "unbespielt",
       "ready": true,
-      "estimatedMinutes": 2
+      "estimatedMinutes": 2,
+      "reviewStatus": "behalten",
+      "editorialNote": "Höchste Punktzahl gewinnt; ein Versuch je Wochenrunde."
     },
     {
       "id": "gl-pumpen",
@@ -728,8 +754,10 @@
       ],
       "type": "glueck",
       "status": "unbespielt",
-      "ready": true,
-      "estimatedMinutes": 2
+      "ready": false,
+      "estimatedMinutes": 2,
+      "reviewStatus": "zurückgestellt",
+      "editorialNote": "Ähnelt anderen Aufdeckspielen; vorerst nicht für neue Runden auswählen."
     },
     {
       "id": "gl-schrauben",
@@ -762,8 +790,10 @@
       ],
       "type": "glueck",
       "status": "unbespielt",
-      "ready": true,
-      "estimatedMinutes": 2
+      "ready": false,
+      "estimatedMinutes": 2,
+      "reviewStatus": "zurückgestellt",
+      "editorialNote": "Ähnelt anderen Aufdeckspielen; vorerst nicht für neue Runden auswählen."
     },
     {
       "id": "gl-geschenke",
@@ -796,8 +826,22 @@
       ],
       "type": "glueck",
       "status": "unbespielt",
+      "ready": false,
+      "estimatedMinutes": 2,
+      "reviewStatus": "zurückgestellt",
+      "editorialNote": "Ähnelt anderen Aufdeckspielen; vorerst nicht für neue Runden auswählen."
+    },
+    {
+      "id": "ac-ski-60",
+      "title": "Ski-Challenge – 60 Sekunden",
+      "type": "action",
+      "topic": "Geschicklichkeit",
+      "status": "unbespielt",
       "ready": true,
-      "estimatedMinutes": 2
+      "estimatedMinutes": 1,
+      "url": "ski-60.html",
+      "reviewStatus": "neu – Testversion",
+      "editorialNote": "Eine Minute fahren, Sterne sammeln, Hindernissen ausweichen. Höchste Punktzahl gewinnt; offizielles Einreichen erst mit geschützter Backend-Auswertung."
     }
   ]
 }
