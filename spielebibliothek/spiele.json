@@ -1,0 +1,795 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-27",
+  "description": "Türk-Freitags-Challenge: öffentliche Inhaltsdaten, keine Teilnehmer oder Ergebnisdaten",
+  "lastPublished": "2026-11-27",
+  "defaults": {
+    "startWeekday": "Freitag",
+    "deadlineWeekday": "Sonntag",
+    "deadlineLocalTime": "18:00",
+    "timezone": "Europe/Berlin",
+    "resultsPublishedAfterDeadline": true,
+    "prize": "Überraschung – nicht vorab bekanntgeben",
+    "oneAttemptPerPersonPerGame": true
+  },
+  "games": [
+    {
+      "id": "arch-kw47",
+      "title": "KW 47 – Freitagsspiel",
+      "type": "archiv",
+      "status": "gespielt",
+      "url": "../kw47.html",
+      "lastPlayed": "2026-11-20"
+    },
+    {
+      "id": "arch-kw48",
+      "title": "KW 48 – Werkzeug-Memory & Kugelschätzen",
+      "type": "archiv",
+      "status": "gespielt",
+      "url": "../kw48.html",
+      "lastPlayed": "2026-11-27"
+    },
+    {
+      "id": "fq-heizbasis",
+      "title": "Heizungswissen – Grundlagen",
+      "topic": "Heizung",
+      "q": [
+        [
+          "Was zeigt das Manometer an der Heizung an?",
+          [
+            "Druck",
+            "Temperatur",
+            "Stromverbrauch",
+            "Raumfeuchte"
+          ],
+          0
+        ],
+        [
+          "Wozu dient ein Ausdehnungsgefäß?",
+          [
+            "Es gleicht Volumenänderungen des Heizwassers aus",
+            "Es filtert Trinkwasser",
+            "Es regelt die Raumbeleuchtung",
+            "Es misst den Gasverbrauch"
+          ],
+          0
+        ],
+        [
+          "Was macht ein Thermostatventil am Heizkörper?",
+          [
+            "Es beeinflusst den Durchfluss nach Raumtemperatur",
+            "Es entlüftet automatisch jede Anlage",
+            "Es erhöht den Wasserdruck",
+            "Es ersetzt die Umwälzpumpe"
+          ],
+          0
+        ],
+        [
+          "Welche Einheit ist bei Heizungsdruck üblich?",
+          [
+            "bar",
+            "Volt",
+            "Wattstunden",
+            "Lux"
+          ],
+          0
+        ],
+        [
+          "Wozu dient eine Umwälzpumpe?",
+          [
+            "Sie bewegt Heizungswasser durch den Kreislauf",
+            "Sie erzeugt Trinkwasser",
+            "Sie misst CO₂",
+            "Sie reinigt das Abgas"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "fq-sanitaer",
+      "title": "Sanitär – leicht gemacht",
+      "topic": "Sanitär",
+      "q": [
+        [
+          "Was bedeutet WW auf vielen Installationsplänen?",
+          [
+            "Warmwasser",
+            "Wasserwaage",
+            "Wartungswert",
+            "Wasserdruckwächter"
+          ],
+          0
+        ],
+        [
+          "Welches Bauteil verhindert oft den Rückfluss von Wasser?",
+          [
+            "Rückflussverhinderer",
+            "Schmutzfänger",
+            "Entlüfter",
+            "Manometer"
+          ],
+          0
+        ],
+        [
+          "Welches Werkzeug hilft beim maßgenauen Ablängen von Rohr?",
+          [
+            "Rohrabschneider",
+            "Spannungsprüfer",
+            "Gliedermaßstab allein",
+            "Wasserwaage"
+          ],
+          0
+        ],
+        [
+          "Wofür steht die Abkürzung DN meist?",
+          [
+            "Nennweite",
+            "Drucknullpunkt",
+            "Dämmnachweis",
+            "Durchfluss-Normzeit"
+          ],
+          0
+        ],
+        [
+          "Wodurch erkennt man eine Undichtigkeit sicherer?",
+          [
+            "Durch geeignete Dichtheitsprüfung",
+            "Am Glanz der Rohrleitung",
+            "An der Rohrfarbe",
+            "An der Raumbeleuchtung"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "fq-werkzeuge",
+      "title": "Werkzeugführerschein",
+      "topic": "Werkzeuge",
+      "q": [
+        [
+          "Womit prüft man, ob etwas waagerecht ist?",
+          [
+            "Wasserwaage",
+            "Rohrabschneider",
+            "Entlüftungsschlüssel",
+            "Seitenschneider"
+          ],
+          0
+        ],
+        [
+          "Wofür ist ein Zollstock geeignet?",
+          [
+            "Längen messen",
+            "Druck messen",
+            "Spannung messen",
+            "Temperatur messen"
+          ],
+          0
+        ],
+        [
+          "Was passt am besten zu einer Sechskantmutter?",
+          [
+            "Passender Schraubenschlüssel",
+            "Holzsäge",
+            "Pinsel",
+            "Kabelbinder"
+          ],
+          0
+        ],
+        [
+          "Warum verwendet man das passende Bit?",
+          [
+            "Damit der Schraubenkopf möglichst nicht beschädigt wird",
+            "Damit Wasser fließt",
+            "Damit das Rohr länger wird",
+            "Damit die Sicherung auslöst"
+          ],
+          0
+        ],
+        [
+          "Was ist vor Benutzung eines Messwerkzeugs sinnvoll?",
+          [
+            "Zustand und Eignung prüfen",
+            "Es absichtlich fallen lassen",
+            "Skala überkleben",
+            "Batterie entfernen"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "fq-waermepumpe",
+      "title": "Wärmepumpe – Basiswissen",
+      "topic": "Wärmepumpe",
+      "q": [
+        [
+          "Woher kann eine Luft-Wasser-Wärmepumpe Wärme gewinnen?",
+          [
+            "Aus der Außenluft",
+            "Nur aus Netzstrom",
+            "Nur aus Trinkwasser",
+            "Aus dem Abwasserrohr allein"
+          ],
+          0
+        ],
+        [
+          "Was bedeutet Vorlauftemperatur?",
+          [
+            "Temperatur des Wassers zum Heizkreis",
+            "Außentemperatur",
+            "Temperatur des Trinkwasserzählers",
+            "Abgastemperatur"
+          ],
+          0
+        ],
+        [
+          "Welche Vorlauftemperatur verbessert oft die Effizienz einer Wärmepumpe?",
+          [
+            "Möglichst niedrig, soweit die Heizlast gedeckt ist",
+            "Immer 90 °C",
+            "Immer maximal hoch",
+            "Sie spielt keine Rolle"
+          ],
+          0
+        ],
+        [
+          "Wozu kann ein Pufferspeicher dienen?",
+          [
+            "Wärme zwischenspeichern",
+            "Stromzähler ersetzen",
+            "Gasleitungen abdichten",
+            "Wasser desinfizieren"
+          ],
+          0
+        ],
+        [
+          "Was beschreibt COP?",
+          [
+            "Verhältnis von abgegebener Wärme zu aufgenommener Antriebsenergie unter Prüfbedingungen",
+            "Lautstärke in Dezibel",
+            "Rohrdurchmesser",
+            "Wasserdruck"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "fq-umwelt",
+      "title": "Energie & Umwelttechnik",
+      "topic": "Umwelt",
+      "q": [
+        [
+          "Welcher Wert beschreibt die elektrische Leistung?",
+          [
+            "Watt",
+            "Liter",
+            "bar",
+            "Grad Celsius"
+          ],
+          0
+        ],
+        [
+          "Was misst ein Wärmemengenzähler?",
+          [
+            "Abgegebene oder bezogene Wärmemenge",
+            "Luftfeuchte",
+            "Rohrlänge",
+            "Geräuschpegel"
+          ],
+          0
+        ],
+        [
+          "Was verbessert in der Regel die Dämmung einer warmen Rohrleitung?",
+          [
+            "Sie verringert Wärmeverluste",
+            "Sie vergrößert den Wasserdruck",
+            "Sie verdoppelt automatisch den Durchfluss",
+            "Sie erzeugt Wärme"
+          ],
+          0
+        ],
+        [
+          "Was bedeutet kWh?",
+          [
+            "Kilowattstunde",
+            "Kilowatt pro Heizkörper",
+            "Kilohertz Wasser",
+            "Kelvin pro Stunde"
+          ],
+          0
+        ],
+        [
+          "Welche Einstellung kann den Energieverbrauch senken?",
+          [
+            "Bedarfsgerechte Heizzeiten",
+            "Dauerhaft maximaler Vorlauf",
+            "Offene Fenster bei voller Heizung",
+            "Deaktivierte Regelung"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "fq-kundendienst",
+      "title": "Kundendienst-Knigge",
+      "topic": "Praxis",
+      "q": [
+        [
+          "Was ist vor einer Reparatur beim Kunden sinnvoll?",
+          [
+            "Problem und Vorgehen kurz erklären",
+            "Ohne Rückfrage alles demontieren",
+            "Nur schweigen",
+            "Messwerte nicht notieren"
+          ],
+          0
+        ],
+        [
+          "Wie geht man mit einem unbekannten Fehler um?",
+          [
+            "Systematisch prüfen und bei Bedarf Fachunterlagen nutzen",
+            "Beliebige Teile tauschen",
+            "Kunde soll raten",
+            "Warnungen ignorieren"
+          ],
+          0
+        ],
+        [
+          "Was gehört zu einer sauberen Übergabe?",
+          [
+            "Funktion erklären und Arbeit dokumentieren",
+            "Nur Werkzeug einpacken",
+            "Anlage ohne Prüfung verlassen",
+            "Beschriftungen entfernen"
+          ],
+          0
+        ],
+        [
+          "Warum werden Messwerte dokumentiert?",
+          [
+            "Für Nachvollziehbarkeit und Vergleich",
+            "Weil Papier schwerer ist",
+            "Damit der Druck sinkt",
+            "Damit das Gerät schneller läuft"
+          ],
+          0
+        ],
+        [
+          "Wie behandelt man Kundendaten?",
+          [
+            "Vertraulich und zweckgebunden",
+            "Öffentlich teilen",
+            "In Social Media posten",
+            "An Fremde versenden"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "fq-sicherheit",
+      "title": "Sicherheit auf der Baustelle",
+      "topic": "Sicherheit",
+      "q": [
+        [
+          "Was ist bei Arbeiten an elektrischen Anlagenteilen wichtig?",
+          [
+            "Nur fachkundig und nach geeigneten Schutzmaßnahmen arbeiten",
+            "Vorher mit Wasser sprühen",
+            "Handschuhe allein reichen immer",
+            "Sicherungen zufällig betätigen"
+          ],
+          0
+        ],
+        [
+          "Wozu dient eine Schutzbrille?",
+          [
+            "Augen vor geeigneten Gefahren schützen",
+            "Druck erhöhen",
+            "Luft messen",
+            "Schall verstärken"
+          ],
+          0
+        ],
+        [
+          "Was ist bei einem beschädigten Werkzeug richtig?",
+          [
+            "Aus dem Betrieb nehmen und prüfen lassen",
+            "Trotzdem ohne Prüfung nutzen",
+            "Mit Klebeband immer weiterarbeiten",
+            "An Kollegen heimlich weiterreichen"
+          ],
+          0
+        ],
+        [
+          "Was gehört zu einer sicheren Leiterbenutzung?",
+          [
+            "Standsicherheit und Eignung prüfen",
+            "Auf losem Untergrund schräg stellen",
+            "Nur auf die oberste Stufe stellen",
+            "Mit beschädigten Sprossen nutzen"
+          ],
+          0
+        ],
+        [
+          "Warum ist Ordnung am Arbeitsplatz wichtig?",
+          [
+            "Sie reduziert Stolper- und Verletzungsrisiken",
+            "Sie erhöht automatisch den Wasserdruck",
+            "Sie verkürzt Rohre",
+            "Sie ersetzt PSA"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "fq-knobeln",
+      "title": "Technik-Zahlenrätsel",
+      "topic": "Knobeln",
+      "q": [
+        [
+          "Ein Rohrstück ist 80 cm lang. 20 cm werden abgeschnitten. Was bleibt?",
+          [
+            "60 cm",
+            "100 cm",
+            "40 cm",
+            "20 mm"
+          ],
+          0
+        ],
+        [
+          "Drei Heizkörper benötigen jeweils ein Thermostat. Wie viele Thermostate sind das?",
+          [
+            "3",
+            "6",
+            "9",
+            "1"
+          ],
+          0
+        ],
+        [
+          "Ein Handwerker braucht pro Aufgabe 10 Minuten. Wie lange dauern vier Aufgaben nacheinander?",
+          [
+            "40 Minuten",
+            "14 Minuten",
+            "20 Minuten",
+            "60 Minuten"
+          ],
+          0
+        ],
+        [
+          "Was sind 2,5 Meter in Zentimetern?",
+          [
+            "250 cm",
+            "25 cm",
+            "2500 cm",
+            "205 cm"
+          ],
+          0
+        ],
+        [
+          "Welche Zahl ist am größten?",
+          [
+            "1.000",
+            "100",
+            "10",
+            "1"
+          ],
+          0
+        ]
+      ],
+      "type": "fachquiz",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 3,
+      "questionCount": 5
+    },
+    {
+      "id": "gl-kekse",
+      "title": "Die 20 Glückskekse",
+      "topic": "Kekse",
+      "icon": "🍪",
+      "items": 20,
+      "picks": 5,
+      "points": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    },
+    {
+      "id": "gl-werkzeug",
+      "title": "Der geheime Werkzeugkoffer",
+      "topic": "Werkzeuge",
+      "icon": "🧰",
+      "items": 16,
+      "picks": 4,
+      "points": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    },
+    {
+      "id": "gl-rohre",
+      "title": "Die 20 Glücksrohre",
+      "topic": "Rohre",
+      "icon": "🔩",
+      "items": 20,
+      "picks": 5,
+      "points": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        7,
+        8,
+        9,
+        10
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    },
+    {
+      "id": "gl-ventile",
+      "title": "Ventil-Roulette",
+      "topic": "Ventile",
+      "icon": "⚙️",
+      "items": 18,
+      "picks": 5,
+      "points": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    },
+    {
+      "id": "gl-sterne",
+      "title": "Sterne hinter der Klappe",
+      "topic": "Sterne",
+      "icon": "⭐",
+      "items": 24,
+      "picks": 5,
+      "points": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        7,
+        8,
+        8,
+        9,
+        9,
+        10,
+        10
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    },
+    {
+      "id": "gl-pumpen",
+      "title": "Pumpen-Glück",
+      "topic": "Pumpen",
+      "icon": "💧",
+      "items": 16,
+      "picks": 4,
+      "points": [
+        0,
+        0,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    },
+    {
+      "id": "gl-schrauben",
+      "title": "Schrauben-Schatzsuche",
+      "topic": "Schrauben",
+      "icon": "🔧",
+      "items": 20,
+      "picks": 5,
+      "points": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        7,
+        8,
+        9,
+        10
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    },
+    {
+      "id": "gl-geschenke",
+      "title": "Die geheimen Päckchen",
+      "topic": "Päckchen",
+      "icon": "🎁",
+      "items": 20,
+      "picks": 5,
+      "points": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        8,
+        9,
+        10,
+        10
+      ],
+      "type": "glueck",
+      "status": "unbespielt",
+      "ready": true,
+      "estimatedMinutes": 2
+    }
+  ]
+}
