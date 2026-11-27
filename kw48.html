@@ -7,8 +7,8 @@
 <meta property="og:title" content="🎮 Türk-Freitagsspiel KW 48 – Memory & Kugelschätzen">
 <meta property="og:description" content="8 Werkzeugpaare finden und danach die Kugeln in der Glaskaraffe schätzen. Jetzt mitspielen!">
 <meta property="og:url" content="https://buerotuerk.github.io/Spiel-Fehlersuche/kw48.html">
-<meta property="og:image" content="https://buerotuerk.github.io/Spiel-Fehlersuche/tuerk-baustelle-5.jpg">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://buerotuerk.github.io/Spiel-Fehlersuche/tuerk-baustelle-5.jpg">
+<meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Repair_tool_kit.jpg?width=1200">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Repair_tool_kit.jpg?width=1200">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#eaf3f1;color:#173b3d;font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
 header{background:linear-gradient(115deg,#075b63,#118d88);color:white;text-align:center;padding:11px 8px}header b{font-size:clamp(12px,2vw,17px)}
@@ -24,8 +24,8 @@ button:disabled{opacity:.5;cursor:default}.ghost{background:#e2f1ed;color:#085e6
 .tile{position:relative;aspect-ratio:1.1;min-height:0;padding:0;overflow:hidden;border:2px solid #a7cac4;background:linear-gradient(135deg,#087982,#155967)}
 .tile .back,.tile .front{position:absolute;inset:0;display:grid;place-items:center}
 .tile .back{color:#eaf9ef;font-size:clamp(25px,6vw,48px)}
-.tile .front{visibility:hidden;background:#e3f2e9;color:#164e4c;grid-template-rows:1fr auto;padding:2px}
-.tile .emoji{font-size:clamp(29px,7vw,57px);align-self:center;line-height:1.2}
+.tile .front{visibility:hidden;background:#fff;color:#164e4c;grid-template-rows:minmax(0,1fr) auto;padding:2px}
+.tile .emoji{font-size:clamp(29px,7vw,57px);align-self:center;line-height:1.2}.tile .toolphoto{display:block;width:100%;height:100%;min-height:0;object-fit:contain;background:white;padding:2px}
 .tile small{font-size:clamp(9px,1.8vw,14px);font-weight:750;line-height:1.1;padding-bottom:5px}
 .tile.open .front,.tile.done .front{visibility:visible}.tile.open .back,.tile.done .back{visibility:hidden}.tile.done{border-color:#e1b833;background:#fbe89c}
 #jarArea{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,300px);gap:15px;align-items:center}
@@ -42,7 +42,7 @@ input[type=number]{font:inherit;font-weight:700;width:min(180px,45vw);padding:11
 <body><header><b>Michael Türk · Sanitär-, Heiz- und Umwelttechnik</b><h1>🎮 Türk-Freitagsspiel KW 48</h1><p>Werkzeug-Memory & Kugeln schätzen · 27. November 2026</p></header>
 <main><div class="switch"><button id="navMemory" class="active">🧰 1 · Memory</button><button id="navGuess" class="ghost">🔮 2 · Schätzspiel</button></div>
 <section id="memorySection" class="card">
-<h2>🧰 Runde 1 – Werkzeug-Memory</h2><p>Finde die <b>acht zusammengehörenden Werkzeugpaare</b>. Tippe immer zwei Karten an.</p>
+<h2>🧰 Runde 1 – Werkzeug-Memory</h2><p>Finde die <b>acht Werkzeugpaare</b> auf echten Werkzeugfotos. Tippe immer zwei Karten an.</p>
 <div class="status"><span id="pairs">0 von 8 Paaren</span><span id="moves">0 Züge</span><span id="timer">⏱ 00:00</span></div>
 <div class="board" id="board" aria-label="16 verdeckte Werkzeugkarten"></div>
 <div class="row"><button id="memoryReset" class="ghost">↻ Neu mischen</button><button id="memoryNext" class="advance">Weiter zum Schätzspiel →</button></div>
@@ -61,21 +61,18 @@ input[type=number]{font:inherit;font-weight:700;width:min(180px,45vw);padding:11
 <ellipse cx="190" cy="50" rx="79" ry="12" fill="#c6eeee" stroke="#94bdc0" stroke-width="5"/>
 <path d="M115 154Q80 193 82 321" stroke="white" opacity=".56" stroke-width="11" fill="none" stroke-linecap="round"/>
 <path d="M282 169Q305 234 293 315" stroke="white" opacity=".34" stroke-width="6" fill="none" stroke-linecap="round"/>
-<text x="190" y="445" text-anchor="middle" fill="#476e70" font-size="12">Schematische Darstellung · nicht maßstabsgetreu</text>
+<text x="190" y="445" text-anchor="middle" fill="#476e70" font-size="12">Modellabbildung · Kugeln in mehreren Schichten</text>
 </svg>
-<div class="measure"><strong>Die Maße:</strong>
-<p>Innen-Ø des Gefäßes: <b>16 cm</b></p><p>Füllhöhe: <b>18 cm</b></p><p>Durchmesser je Kugel: <b>3 cm</b></p>
-<p class="muted">Die Kugeln sind dicht, aber nicht lückenlos gepackt. Das Gefäß ist näherungsweise zylindrisch.</p>
-</div></div>
+<div class="measure"><strong id="jarName">Glaskaraffe</strong><p id="jarDimensions">Innen-Ø 16 cm · Füllhöhe 18 cm · Kugel-Ø 3 cm</p><p class="muted" id="jarInfo">Die Kugeln liegen in mehreren Schichten. Sie sind nicht lückenlos gepackt.</p></div></div>
 <div class="row"><input id="estimate" type="number" inputmode="numeric" min="1" max="9999" step="1" placeholder="Deine Zahl" aria-label="Geschätzte Kugelzahl"><button id="submitGuess">Schätzung prüfen</button></div>
 <div id="quizResult" class="result" aria-live="polite"></div>
-<div class="row"><button id="guessAgain" class="ghost">↻ Erneut schätzen</button><button id="backMemory" class="ghost">← Zum Memory</button></div>
+<div class="row"><button id="guessAgain" class="ghost">↻ Neues Gefäß schätzen</button><button id="backMemory" class="ghost">← Zum Memory</button></div>
 </section>
-<p class="muted" style="text-align:center">Türk-Freitagsspiel · Keine Anmeldung · Das Schätzgefäß ist eine illustrative Knobelaufgabe, keine Aufnahme einer real befüllten Karaffe.</p>
+<p class="muted" style="text-align:center">Türk-Freitagsspiel · Keine Anmeldung · Kugelgefäße sind Modellabbildungen. Werkzeugfotos: <a href="https://commons.wikimedia.org/wiki/Category:Tools" target="_blank" rel="noopener">Wikimedia Commons</a> (Urheber und Lizenz auf den jeweiligen Bildseiten).</p>
 </main>
 <script>
 (()=>{'use strict';const $=id=>document.getElementById(id);
-const tools=[['🔧','Schraubenschlüssel'],['🔨','Hammer'],['🪛','Schraubendreher'],['🪚','Säge'],['🧰','Werkzeugkoffer'],['📏','Zollstock'],['🗜️','Schraubzwinge'],['🔩','Schraube']];
+const tools=[["Wasserpumpenzange","https://commons.wikimedia.org/wiki/Special:FilePath/DDR%20Wasserpumpenzange.jpg?width=360","🔧"],["Zollstock","https://commons.wikimedia.org/wiki/Special:FilePath/Zollstock%20aufgeklappt%20(10).jpg?width=360","📏"],["Rohrzange","https://commons.wikimedia.org/wiki/Special:FilePath/P171%20Zange.jpg?width=360","🔧"],["Rollgabelschlüssel","https://commons.wikimedia.org/wiki/Special:FilePath/Schraubenschl%C3%BCssel-verst%20hg.jpg?width=360","🔧"],["Wasserwaage","https://commons.wikimedia.org/wiki/Special:FilePath/Digital%20Spirit%20Level.jpg?width=360","📐"],["Schraubendreher","https://commons.wikimedia.org/wiki/Special:FilePath/Wiha%20Softfinish%20Schraubendreher.png?width=360","🪛"],["Rohrabschneider","https://commons.wikimedia.org/wiki/Special:FilePath/Rohrabschneider.jpg?width=360","🔩"],["Metallsäge","https://commons.wikimedia.org/wiki/Special:FilePath/Kleine%20B%C3%BCgels%C3%A4ge10.jpg?width=360","🪚"]];
 let cards=[],opened=[],locked=false,pairs=0,moves=0,secs=0,ticker=null,flipTimer=null,active=true;
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function showStats(){$('pairs').textContent=pairs+' von 8 Paaren';$('moves').textContent=moves+' Züge';$('timer').textContent='⏱ '+String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0')}
@@ -85,26 +82,41 @@ if(opened.length===2){locked=true;moves++;showStats();const a=cards[opened[0]],b
 if(a.id===b.id){a.done=b.done=true;a.el.classList.add('done');b.el.classList.add('done');opened=[];locked=false;pairs++;showStats();if(pairs===8)finishMemory()}
 else{const i1=opened[0],i2=opened[1];flipTimer=setTimeout(()=>{cards[i1].open=false;cards[i2].open=false;cards[i1].el.classList.remove('open');cards[i2].el.classList.remove('open');opened=[];locked=false;flipTimer=null},950)}
 }}
-function initMemory(){clearInterval(ticker);clearTimeout(flipTimer);ticker=flipTimer=null;cards=shuffle(Array.from({length:16},(_,i)=>({id:i%8,open:false,done:false})));opened=[];locked=false;pairs=moves=secs=0;active=true;$('memoryResult').hidden=true;$('board').replaceChildren();cards.forEach((c,i)=>{const b=document.createElement('button');b.className='tile';b.type='button';b.setAttribute('aria-label','Karte '+(i+1)+' aufdecken');const back=document.createElement('span');back.className='back';back.textContent='?';const front=document.createElement('span');front.className='front';const emoji=document.createElement('span');emoji.className='emoji';emoji.textContent=tools[c.id][0];const name=document.createElement('small');name.textContent=tools[c.id][1];front.append(emoji,name);b.append(back,front);b.onclick=()=>flip(i);c.el=b;$('board').append(b)});showStats()}
+function initMemory(){clearInterval(ticker);clearTimeout(flipTimer);ticker=flipTimer=null;cards=shuffle(Array.from({length:16},(_,i)=>({id:i%8,open:false,done:false})));opened=[];locked=false;pairs=moves=secs=0;active=true;$('memoryResult').hidden=true;$('board').replaceChildren();cards.forEach((c,i)=>{const b=document.createElement('button');b.className='tile';b.type='button';b.setAttribute('aria-label','Karte '+(i+1)+' aufdecken');const back=document.createElement('span');back.className='back';back.textContent='?';const front=document.createElement('span');front.className='front';const emoji=document.createElement('span');emoji.className='emoji';const img=document.createElement('img');img.className='toolphoto';img.src=tools[c.id][1];img.alt=tools[c.id][0];img.loading='lazy';img.onerror=()=>{img.replaceWith(emoji)};emoji.textContent=tools[c.id][2];const name=document.createElement('small');name.textContent=tools[c.id][0];front.append(img,name);b.append(back,front);b.onclick=()=>flip(i);c.el=b;$('board').append(b)});showStats()}
 function finishMemory(){active=false;clearInterval(ticker);ticker=null;const el=$('memoryResult');el.hidden=false;el.textContent='🏆 Alle acht Werkzeugpaare gefunden! '+moves+' Züge · '+Math.floor(secs/60)+' Min. '+secs%60+' Sek. Weiter geht es mit dem Kugelschätzen.'}
 function page(n){const one=n===0;$('memorySection').hidden=!one;$('guessSection').hidden=one;$('navMemory').className=one?'active':'ghost';$('navGuess').className=one?'ghost':'active';if(!one)clearInterval(ticker);else if(active&&secs>0&&ticker===null)beginClock();window.scrollTo(0,0)}
 $('navMemory').onclick=()=>page(0);$('navGuess').onclick=()=>page(1);$('memoryNext').onclick=()=>page(1);$('backMemory').onclick=()=>page(0);$('memoryReset').onclick=initMemory;
-const answer=166,ballLayer=$('ballLayer');
+const variants=[
+{name:'Runde Karaffe',shape:'carafe',measure:'Innen-Ø: 16 cm · Füllhöhe: 18 cm · Kugel-Ø: 3 cm',info:'Bauchiges Gefäß, näherungsweise zylindrisch. Die Kugeln liegen in mehreren Schichten.',count:166},
+{name:'Glaswürfel',shape:'cube',measure:'Innenmaß: 15 × 15 × 15 cm · Kugel-Ø: 3 cm',info:'Ein fast würfelförmiges Glasgefäß. Zwischen den Kugeln bleiben Hohlräume.',count:153},
+{name:'Kugelvase',shape:'sphere',measure:'Innendurchmesser: 20 cm · Kugel-Ø: 2,5 cm',info:'Eine nahezu kugelförmige Glasvase. Schätze auch die Kugeln in den hinteren Schichten.',count:328},
+{name:'Quaderglas',shape:'box',measure:'Innenmaß: 18 × 12 × 15 cm · Kugel-Ø: 3 cm',info:'Rechteckige Glasbox; das Kugelvolumen füllt nicht jeden Zwischenraum.',count:147}
+];
+let variant=0,answer=variants[0].count;
+const ballLayer=$('ballLayer'),jarSvg=document.querySelector('.jarVisual');
+const clipPath=jarSvg.querySelector('#inside path');
+const roundPath=clipPath.getAttribute('d');
+const shapes={carafe:roundPath,cube:'M95 77H285V417H95Z',sphere:'M190 93C95 93 47 170 47 261C47 354 111 418 190 418C270 418 333 354 333 261C333 170 285 93 190 93Z',box:'M73 109H307V409H73Z'};
 function drawBalls(){
-// 166 decorative spherical layers; fixed answer, visually approximate packing in 3D.
-const NS='http://www.w3.org/2000/svg';let seed=4811;
+const v=variants[variant];answer=v.count;
+$('jarName').textContent=v.name;$('jarDimensions').textContent=v.measure;$('jarInfo').textContent=v.info;
+$('estimate').value='';$('quizResult').textContent='';
+for(const p of jarSvg.querySelectorAll('path'))if(p.getAttribute('d')===roundPath||Object.values(shapes).includes(p.getAttribute('d')))p.setAttribute('d',shapes[v.shape]);
+clipPath.setAttribute('d',shapes[v.shape]);ballLayer.replaceChildren();
+const NS='http://www.w3.org/2000/svg';let seed=4811+variant*731;
 const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+const columns=v.shape==='cube'?11:v.shape==='box'?13:14,lowY=v.shape==='sphere'?137:160,rows=Math.ceil(answer/columns);
 for(let i=0;i<answer;i++){
- const y=160+Math.floor(i/14)*19+(rand()-.5)*8;
- const x=88+(i%14)*15+(rand()-.5)*12;
- const ellipse=Math.sqrt(Math.max(.04,1-Math.pow((y-280)/165,2)));
- const visibleX=190+(x-190)*ellipse*.92;
- const circ=document.createElementNS(NS,'circle');circ.setAttribute('cx',visibleX.toFixed(1));circ.setAttribute('cy',y.toFixed(1));circ.setAttribute('r',(9.1+rand()*2).toFixed(1));
- circ.setAttribute('fill',i%5===0?'#d7ad60':i%6===0?'#cc8d64':'url(#ball)');circ.setAttribute('stroke','#8b6038');circ.setAttribute('stroke-opacity','.3');circ.setAttribute('stroke-width','.65');ballLayer.append(circ);
- const glint=document.createElementNS(NS,'circle');glint.setAttribute('cx',(visibleX-3).toFixed(1));glint.setAttribute('cy',(y-4).toFixed(1));glint.setAttribute('r','2.3');glint.setAttribute('fill','#fff4d2');glint.setAttribute('opacity','.55');ballLayer.append(glint);
-}}
+ const y=lowY+Math.floor(i/columns)*(260/rows)+(rand()-.5)*8;
+ const rawX=92+(i%columns)*196/Math.max(1,columns-1)+(rand()-.5)*10;
+ const ellipse=v.shape==='sphere'?Math.sqrt(Math.max(.04,1-Math.pow((y-255)/170,2))):1;
+ const x=190+(rawX-190)*ellipse;
+ const c=document.createElementNS(NS,'circle');c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));c.setAttribute('r',(8.2+rand()*2.2).toFixed(1));c.setAttribute('fill',i%5===0?'#d7ad60':i%6===0?'#cc8d64':'url(#ball)');c.setAttribute('stroke','#8b6038');c.setAttribute('stroke-opacity','.3');ballLayer.append(c);
+ const g=document.createElementNS(NS,'circle');g.setAttribute('cx',(x-3).toFixed(1));g.setAttribute('cy',(y-4).toFixed(1));g.setAttribute('r','2');g.setAttribute('fill','#fff4d2');g.setAttribute('opacity','.55');ballLayer.append(g);
+}
+}
 $('submitGuess').onclick=()=>{const v=$('estimate').value.trim(),n=Number(v);if(!v||!Number.isInteger(n)||n<1){$('quizResult').textContent='Bitte gib zuerst eine ganze Zahl ein.';return}const deviation=Math.abs(n-answer),pct=Math.round(deviation/answer*100);const score=Math.max(0,100-Math.round(100*deviation/answer));$('quizResult').textContent='🎯 Deine Schätzung: '+n+' Kugeln. Angenommene Anzahl im Modell: '+answer+' Kugeln. Abweichung: '+deviation+' ('+pct+' %). Du erhältst '+score+' von 100 Punkten. Bei einer dicht gepackten Kugelfüllung bleiben immer Hohlräume.';};
-$('guessAgain').onclick=()=>{$('estimate').value='';$('quizResult').textContent='';$('estimate').focus()};
+$('guessAgain').onclick=()=>{variant=(variant+1)%variants.length;drawBalls();$('estimate').focus()};
 $('estimate').addEventListener('keydown',e=>{if(e.key==='Enter')$('submitGuess').click()});
 drawBalls();initMemory();
 })();
