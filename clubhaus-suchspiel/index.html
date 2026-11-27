@@ -43,8 +43,8 @@ border-radius:0;background:#253a2e;touch-action:pan-x pan-y}
 /* Vollbild-Fit im Querformat: erst ganzes Bild, erst durch Pinch groesser. */
 .game-panel{bottom:calc(41px + env(safe-area-inset-bottom))!important}
 .game-panel>.actions{display:none!important}
-.game-panel .viewer{display:block;overflow:auto;min-height:0;max-height:none!important;border:none;background:#172f24;overscroll-behavior:contain;container-type:size}
-.game-panel .board{margin:0 auto;max-width:none;flex:none;width:min(100cqw,177.68cqh);aspect-ratio:1672/941}
+.game-panel .viewer{display:block;overflow:auto;min-height:0;max-height:none!important;border:none;background:#172f24;overscroll-behavior:contain;}
+.game-panel .board{margin:0 auto;max-width:none;flex:none;width:100%;aspect-ratio:1672/941}
 /* Safari-Fallback fuer alte Browser */
 @supports not (width:100cqw){.game-panel .board{width:100%}}
 .game-toolbar{height:41px!important;min-height:41px!important;padding:3px 5px calc(3px + env(safe-area-inset-bottom))!important;gap:6px;justify-content:center;flex-wrap:nowrap}
@@ -88,24 +88,21 @@ const layer=$('targetLayer'),board=$('board'),viewer=$('viewer'),scene=$('scene'
 const imageRatio=1672/941;
 let baseWidth=0;
 function fitBoard(){
-if(level===1){
-  board.style.removeProperty('width');
-  const vw=viewer.clientWidth,vh=viewer.clientHeight;
-  const cssWidth=board.getBoundingClientRect().width;
-  baseWidth=Math.max(1,Math.min(vw,vh*imageRatio,cssWidth||vw));
-  viewer.scrollLeft=0;viewer.scrollTop=0;
-}else{
-  const oldBase=baseWidth||1;
-  const w=Math.max(1,Math.min(viewer.clientWidth,viewer.clientHeight*imageRatio));
-  baseWidth=w;
-  board.style.width=(baseWidth*level)+'px';
-  viewer.scrollLeft*=w/oldBase;viewer.scrollTop*=w/oldBase;
+ const w=Math.max(1,viewer.clientWidth),h=Math.max(1,viewer.clientHeight);
+ const contained=Math.min(w,h*imageRatio);
+ // Ignore spuriously short Safari viewport heights when they would shrink the picture.
+ const minimumReadable=window.innerWidth>window.innerHeight?w*.82:w;
+ const next=Math.min(w,Math.max(contained,minimumReadable));
+ const previous=baseWidth||next;
+ baseWidth=next;
+ board.style.width=(baseWidth*level)+'px';
+ if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}
+ else{viewer.scrollLeft*=next/previous;viewer.scrollTop*=next/previous}
 }
-}
-function stableFit(){requestAnimationFrame(fitBoard);setTimeout(fitBoard,180);setTimeout(fitBoard,500)}
+function stableFit(){requestAnimationFrame(fitBoard);setTimeout(fitBoard,230)}
 window.addEventListener('resize',stableFit);
 if(window.visualViewport)window.visualViewport.addEventListener('resize',stableFit);
-window.addEventListener('orientationchange',()=>{level=1;stableFit();setTimeout(fitBoard,850)});
+window.addEventListener('orientationchange',()=>{level=1;stableFit();setTimeout(fitBoard,750)});
 window.addEventListener('pageshow',stableFit);
 if(window.ResizeObserver)new ResizeObserver(()=>requestAnimationFrame(fitBoard)).observe(viewer);
 const current=()=>rounds[round],format=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
@@ -130,23 +127,19 @@ e.preventDefault();if(!active){$('status').textContent='Bitte zuerst unten auf �
 $('foundList').replaceChildren();pups.forEach((p,i)=>{let el=document.createElement('span');el.className=found.has(i)?'yes':'';el.textContent=found.has(i)?'✓ Welpe '+(i+1):'○ Welpe '+(i+1);$('foundList').append(el)});
 }
 function zoom(n,anchor){
-const oldLevel=level,newLevel=Math.max(1,Math.min(3,n));
-if(Math.abs(oldLevel-newLevel)<.001){if(newLevel===1){viewer.scrollLeft=0;viewer.scrollTop=0}return;}
-const rect=viewer.getBoundingClientRect();
-const cx=anchor?anchor.x-rect.left:viewer.clientWidth/2;
-const cy=anchor?anchor.y-rect.top:viewer.clientHeight/2;
-const left=viewer.scrollLeft+cx,top=viewer.scrollTop+cy;
-level=newLevel;
-if(level===1){board.style.removeProperty('width')}else{
- const naturalBase=Math.max(1,Math.min(viewer.clientWidth,viewer.clientHeight*imageRatio));
- if(!baseWidth)baseWidth=naturalBase;
- board.style.width=(baseWidth*level)+'px';
-}
-$('zoomLabel').textContent='🔎 '+Math.round(level*100)+' %';
-const scale=newLevel/oldLevel;
-viewer.scrollLeft=Math.max(0,left*scale-cx);
-viewer.scrollTop=Math.max(0,top*scale-cy);
-if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}
+ const oldLevel=level,newLevel=Math.max(1,Math.min(3,n));
+ if(Math.abs(oldLevel-newLevel)<.001){if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}return}
+ const rect=viewer.getBoundingClientRect();
+ const cx=anchor?anchor.x-rect.left:viewer.clientWidth/2;
+ const cy=anchor?anchor.y-rect.top:viewer.clientHeight/2;
+ const x=viewer.scrollLeft+cx,y=viewer.scrollTop+cy;
+ level=newLevel;
+ board.style.width=(Math.max(1,baseWidth)*level)+'px';
+ $('zoomLabel').textContent='🔎 '+Math.round(level*100)+' %';
+ const scale=newLevel/oldLevel;
+ viewer.scrollLeft=Math.max(0,x*scale-cx);
+ viewer.scrollTop=Math.max(0,y*scale-cy);
+ if(level===1){viewer.scrollLeft=0;viewer.scrollTop=0}
 }
 function start(){
 if(!ready){$('status').textContent='Das Bild für diese Runde ist noch nicht verfügbar.';return}
